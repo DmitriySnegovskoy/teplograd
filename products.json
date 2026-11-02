@@ -1,0 +1,792 @@
+{
+  "products": [
+    {
+      "name": "Реле давления автоматическое PS-07А",
+      "price": 2950,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "41799",
+      "brand": "Tim"
+    },
+    {
+      "name": "Уголок обжим 16*16",
+      "price": 149,
+      "section": "Обжимные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "412",
+      "brand": "Tim"
+    },
+    {
+      "name": "Тройник 16*16*16",
+      "price": 202,
+      "section": "Обжимные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "425",
+      "brand": "Tim"
+    },
+    {
+      "name": "Пресс угол 16 x 1/2 В",
+      "price": 224,
+      "section": "Пресс-фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "36659",
+      "brand": "Tim"
+    },
+    {
+      "name": "Реле сухого хода PS-02С",
+      "price": 595,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "98267",
+      "brand": "Tim"
+    },
+    {
+      "name": "Кран-бинокль угловой шаровый ME221AC",
+      "price": 759,
+      "section": "Запорная арматура",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "36667",
+      "brand": "Tim"
+    },
+    {
+      "name": "Уголок 16*1/2\" н",
+      "price": 163,
+      "section": "Обжимные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "413",
+      "brand": "Tim"
+    },
+    {
+      "name": "Уголок 16*1/2\" в",
+      "price": 143,
+      "section": "Обжимные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "414",
+      "brand": "Tim"
+    },
+    {
+      "name": "Угол аксиальный 16-2,2 х 16-2,2",
+      "price": 179,
+      "section": "Аксиальные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "26864",
+      "brand": "Tim"
+    },
+    {
+      "name": "Угол аксиальный 16-2,2 х 1/2\" в",
+      "price": 237,
+      "section": "Аксиальные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "26870",
+      "brand": "Tim"
+    },
+    {
+      "name": "Соединитель 16*16",
+      "price": 193,
+      "section": "Обжимные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "401",
+      "brand": "Tim"
+    },
+    {
+      "name": "Пресс соединитель 16*16",
+      "price": 167,
+      "section": "Пресс-фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "1616",
+      "brand": "Tim"
+    },
+    {
+      "name": "Муфта аксиальная 16-2.2 х 16-2.2 н",
+      "price": 82,
+      "section": "Аксиальные фитинги",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "26849",
+      "brand": "Tim"
+    },
+    {
+      "name": "Коллектор вентильный 3/4-16-3 выхода",
+      "price": 1307,
+      "section": "Коллектор",
+      "icon": "coll",
+      "inStock": true,
+      "sku": "83607",
+      "brand": "Tim"
+    },
+    {
+      "name": "Коллектор вентильный 3/4-16-4",
+      "price": 1937,
+      "section": "Коллектор",
+      "icon": "coll",
+      "inStock": true,
+      "sku": "83608",
+      "brand": "Tim"
+    },
+    {
+      "name": "Коллекторная группа из нерж. стали 1\" 11 х 3/4\"",
+      "price": 15113,
+      "section": "Коллектор",
+      "icon": "coll",
+      "inStock": true,
+      "sku": "02709",
+      "brand": "Tim"
+    },
+    {
+      "name": "Клапан 3-ходовой 3/4\" М30",
+      "price": 906,
+      "section": "Комплектующие",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "86920",
+      "brand": "Tim"
+    },
+    {
+      "name": "Клапан 3-ходовой 1\" М30",
+      "price": 1162,
+      "section": "Комплектующие",
+      "icon": "valve",
+      "inStock": false,
+      "sku": "86921",
+      "brand": "Tim"
+    },
+    {
+      "name": "Радиатор стальной панельный 22 500×1000",
+      "price": 6900,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-22100",
+      "brand": "Вальмир",
+      "power": 1.7
+    },
+    {
+      "name": "Радиатор стальной панельный 11 500×800",
+      "price": 4200,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-11080",
+      "brand": "Вальмир",
+      "power": 0.8
+    },
+    {
+      "name": "Насосная станция АТ-50/25",
+      "price": 8400,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-5025",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Сэндвич-дымоход 115 мм, 1 м",
+      "price": 2300,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-115",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Коаксиальный дымоход 60/100, 1 м",
+      "price": 1450,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-6010",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Газовый настенный котёл 24 кВт",
+      "price": 29900,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "IP-24",
+      "brand": "Италпайп",
+      "power": 24
+    },
+    {
+      "name": "Гибкая подводка 1/2 дюйма, 50 см",
+      "price": 120,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-050",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Контроллер насоса с регулятором давления",
+      "price": 2300,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "VT-21A",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Накопительный водонагреватель 50 л",
+      "price": 9800,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-50",
+      "brand": "Оазис",
+      "power": 2
+    },
+    {
+      "name": "Шаровой кран 1/2\" В-В",
+      "price": 480,
+      "section": "Запорная арматура",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "36670",
+      "brand": "Tim"
+    },
+    {
+      "name": "Труба PEX-AL-PEX 16×2,0, бухта 100 м",
+      "price": 7400,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "16100",
+      "brand": "Tim"
+    },
+    {
+      "name": "Коллектор вентильный 3/4-16-2 выхода",
+      "price": 1050,
+      "section": "Коллектор",
+      "icon": "coll",
+      "inStock": true,
+      "sku": "83606",
+      "brand": "Tim"
+    },
+    {
+      "name": "Электрический котёл 6 кВт",
+      "price": 18900,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "TM-E06",
+      "brand": "Tim",
+      "power": 6
+    },
+    {
+      "name": "Радиатор алюминиевый 500/80, 6 секций",
+      "price": 3600,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "TM-AL06",
+      "brand": "Tim",
+      "power": 1.1
+    },
+    {
+      "name": "Радиатор стальной панельный 22 500×1200",
+      "price": 8100,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-22120",
+      "brand": "Вальмир",
+      "power": 2
+    },
+    {
+      "name": "Радиатор стальной панельный 33 500×1000",
+      "price": 9400,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-33100",
+      "brand": "Вальмир",
+      "power": 2.4
+    },
+    {
+      "name": "Радиатор стальной панельный 11 500×600",
+      "price": 3500,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-11060",
+      "brand": "Вальмир",
+      "power": 0.6
+    },
+    {
+      "name": "Радиатор алюминиевый 500/80, 8 секций",
+      "price": 5200,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": true,
+      "sku": "VM-AL08",
+      "brand": "Вальмир",
+      "power": 1.5
+    },
+    {
+      "name": "Радиатор биметаллический 500/80, 10 секций",
+      "price": 8900,
+      "section": "Радиаторы отопления",
+      "icon": "rad",
+      "inStock": false,
+      "sku": "VM-BM10",
+      "brand": "Вальмир",
+      "power": 1.9
+    },
+    {
+      "name": "Насосная станция АТ-60/30",
+      "price": 9900,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-6030",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Циркуляционный насос 25/60-180",
+      "price": 4300,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-C2560",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Скважинный насос 3\" АТ-3SP",
+      "price": 4900,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-3SP",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Гидроаккумулятор 24 л",
+      "price": 3200,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-HA24",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Фильтр грубой очистки 1/2\"",
+      "price": 780,
+      "section": "Комплектующие",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "AT-F12",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Сэндвич-дымоход 115 мм, 0,5 м",
+      "price": 1350,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-115H",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Колено сэндвич 115 мм, 45°",
+      "price": 1900,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-K45",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Коаксиальный дымоход 60/100, колено 90°",
+      "price": 650,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-6090",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Дефлектор для дымохода 115 мм",
+      "price": 1200,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-DF115",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Адаптер котла 60/100 → 80/80",
+      "price": 980,
+      "section": "Дымоходы",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "PR-AD80",
+      "brand": "Проктор"
+    },
+    {
+      "name": "Газовый настенный котёл 18 кВт",
+      "price": 26500,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "IP-18",
+      "brand": "Италпайп",
+      "power": 18
+    },
+    {
+      "name": "Газовый настенный котёл 32 кВт",
+      "price": 34800,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "IP-32",
+      "brand": "Италпайп",
+      "power": 32
+    },
+    {
+      "name": "Газовый напольный котёл 12 кВт",
+      "price": 31200,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "IP-F12",
+      "brand": "Италпайп",
+      "power": 12
+    },
+    {
+      "name": "Газовый напольный котёл 24 кВт",
+      "price": 41900,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": false,
+      "sku": "IP-F24",
+      "brand": "Италпайп",
+      "power": 24
+    },
+    {
+      "name": "Электрический котёл 9 кВт",
+      "price": 21500,
+      "section": "Отопительные котлы",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "IP-E09",
+      "brand": "Италпайп",
+      "power": 9
+    },
+    {
+      "name": "Гибкая подводка 1/2 дюйма, 100 см",
+      "price": 190,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-100",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Гибкая подводка 1/2 дюйма, 30 см",
+      "price": 98,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-030",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Газовая подводка 1/2 дюйма, 100 см",
+      "price": 420,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-G100",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Сильфонная подводка 1/2 дюйма, 150 см",
+      "price": 540,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-S150",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Шланг для стиральной машины, 1,5 м",
+      "price": 360,
+      "section": "Комплектующие",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "FX-W150",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Реле давления VT-PS3",
+      "price": 1800,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "VT-PS3",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Блок защиты от сухого хода VT-DR1",
+      "price": 1450,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "VT-DR1",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Манометр 0–10 бар",
+      "price": 320,
+      "section": "Комплектующие",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "VT-M10",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Пятивыводной штуцер 1\"",
+      "price": 640,
+      "section": "Комплектующие",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "VT-5W",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Автоматика для насосной станции VT-AUTO",
+      "price": 3900,
+      "section": "Насосное оборудование",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "VT-AUTO",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Накопительный водонагреватель 80 л",
+      "price": 12400,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-80",
+      "brand": "Оазис",
+      "power": 2
+    },
+    {
+      "name": "Накопительный водонагреватель 30 л",
+      "price": 7600,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-30",
+      "brand": "Оазис",
+      "power": 1.5
+    },
+    {
+      "name": "Проточный водонагреватель 5 кВт",
+      "price": 3800,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-P5",
+      "brand": "Оазис",
+      "power": 5
+    },
+    {
+      "name": "Проточный водонагреватель 8 кВт",
+      "price": 5100,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-P8",
+      "brand": "Оазис",
+      "power": 8
+    },
+    {
+      "name": "Бойлер косвенного нагрева 100 л",
+      "price": 21800,
+      "section": "Водонагреватели",
+      "icon": "boil",
+      "inStock": true,
+      "sku": "OZ-B100",
+      "brand": "Оазис"
+    },
+    {
+      "name": "Труба PE-RT 16×2,0 для тёплого пола, бухта 200 м",
+      "price": 10400,
+      "section": "Тёплый пол",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "TM-FL200",
+      "brand": "Tim"
+    },
+    {
+      "name": "Труба PE-RT 16×2,0 для тёплого пола, бухта 100 м",
+      "price": 5600,
+      "section": "Тёплый пол",
+      "icon": "pipe",
+      "inStock": true,
+      "sku": "TM-FL100",
+      "brand": "Tim"
+    },
+    {
+      "name": "Коллекторный шкаф встраиваемый на 4–6 выходов",
+      "price": 4900,
+      "section": "Тёплый пол",
+      "icon": "coll",
+      "inStock": true,
+      "sku": "TM-SH46",
+      "brand": "Tim"
+    },
+    {
+      "name": "Демпферная лента 150 мм, рулон 25 м",
+      "price": 760,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "TM-DL150",
+      "brand": "Tim"
+    },
+    {
+      "name": "Скоба для крепления трубы 16 мм, 50 шт.",
+      "price": 480,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "TM-SK16",
+      "brand": "Tim"
+    },
+    {
+      "name": "Теплоизоляция с фольгированным слоем для тёплого пола, 10 м²",
+      "price": 3200,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "VM-IZ10",
+      "brand": "Вальмир"
+    },
+    {
+      "name": "Направляющая шина для трубы 16 мм, 2 м",
+      "price": 190,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "VM-SH16",
+      "brand": "Вальмир"
+    },
+    {
+      "name": "Смесительный узел для тёплого пола с насосом",
+      "price": 14500,
+      "section": "Тёплый пол",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-MU25",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Циркуляционный насос энергоэффективный 25/60-130",
+      "price": 5900,
+      "section": "Тёплый пол",
+      "icon": "pump",
+      "inStock": true,
+      "sku": "AT-C2560E",
+      "brand": "Акватан"
+    },
+    {
+      "name": "Смесительный узел 3-ходовой с термостатической головкой",
+      "price": 9200,
+      "section": "Тёплый пол",
+      "icon": "valve",
+      "inStock": false,
+      "sku": "IP-SM3",
+      "brand": "Италпайп"
+    },
+    {
+      "name": "Терморегулятор для водяного тёплого пола",
+      "price": 3300,
+      "section": "Тёплый пол",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "VT-TP1",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Сервопривод термоэлектрический 230 В",
+      "price": 1100,
+      "section": "Тёплый пол",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "VT-SP230",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Датчик температуры пола",
+      "price": 480,
+      "section": "Тёплый пол",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "VT-DT1",
+      "brand": "Виртан"
+    },
+    {
+      "name": "Евроконус 16×2,0 для коллектора, 2 шт.",
+      "price": 320,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "FX-EK16",
+      "brand": "Флексон"
+    },
+    {
+      "name": "Нагревательный мат 150 Вт/м², 2 м²",
+      "price": 3900,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "OZ-M2",
+      "brand": "Оазис",
+      "power": 0.3
+    },
+    {
+      "name": "Нагревательный мат 150 Вт/м², 4 м²",
+      "price": 6800,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "OZ-M4",
+      "brand": "Оазис",
+      "power": 0.6
+    },
+    {
+      "name": "Нагревательный мат 150 Вт/м², 8 м²",
+      "price": 12400,
+      "section": "Тёплый пол",
+      "icon": "fit",
+      "inStock": true,
+      "sku": "OZ-M8",
+      "brand": "Оазис",
+      "power": 1.2
+    },
+    {
+      "name": "Терморегулятор электрического тёплого пола с датчиком",
+      "price": 2900,
+      "section": "Тёплый пол",
+      "icon": "valve",
+      "inStock": true,
+      "sku": "OZ-TR1",
+      "brand": "Оазис"
+    }
+  ]
+}

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ТеплоГрад — оборудование для отопления</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f2f5f9;--surface:#fff;--text:#1b2430;--muted:#6b7686;--line:#d9e0ea;--accent:#2f5d9e;--accent-t:#fff;--ok:#2e7d4f;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a22;--surface:#1c2430;--text:#e8edf4;--muted:#93a0b3;--line:#2c3746;--accent:#5b93e0;--accent-t:#141a22;--ok:#5cc08a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141a22;--surface:#1c2430;--text:#e8edf4;--muted:#93a0b3;--line:#2c3746;--accent:#5b93e0;--accent-t:#141a22;--ok:#5cc08a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{background:var(--surface);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;letter-spacing:-.3px}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--accent);display:inline-block;position:relative}
+.logo i::after{content:"";position:absolute;inset:7px 9px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--accent-t)}
+nav{display:flex;gap:22px;font-size:18px;color:var(--muted);flex-wrap:wrap}
+.phone{font-weight:600}
+.small{font-size:12px;color:var(--muted)}
+.crumbs{padding:14px 0 4px;font-size:13px;color:var(--muted)}
+h1{margin:4px 0 2px;font-size:28px;letter-spacing:-.5px}
+.bar{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:7px 13px;border-radius:999px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-bottom:12px}
+.tools input[type=search],.tools select{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:9px 12px;border-radius:10px;font-size:14px;max-width:100%}
+.tools input[type=search]{flex:1;min-width:140px}
+label.chk{display:flex;gap:6px;align-items:center;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;padding-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.ph{aspect-ratio:1/1;border-radius:10px;background:var(--bg);display:grid;place-items:center;color:var(--accent)}
+.ph svg{width:46%;height:46%}
+.brand{font-size:12px;color:var(--muted)}
+.name{font-size:14px;font-weight:600;min-height:3.9em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.stock{font-size:12px;color:var(--ok)}
+.stock.no{color:var(--muted)}
+.price{font-size:20px;font-weight:700;margin-top:auto}
+.btn{border:0;background:var(--accent);color:var(--accent-t);padding:10px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;width:100%}
+.btn.ghost{background:transparent;border:1px solid var(--text);color:var(--text);width:auto;padding:10px 16px}
+.promo{grid-column:1/-1;background:var(--text);color:var(--bg);border-radius:14px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.promo b{font-size:17px}
+.promo .btn{width:auto;padding:10px 16px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
+footer{background:var(--text);color:var(--bg);padding:24px 0;font-size:13px}
+dialog{border:0;border-radius:16px;padding:20px;width:min(400px,92vw);background:var(--surface);color:var(--text)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog input,dialog select,dialog textarea{width:100%;margin:6px 0;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:15px}
+dialog textarea{resize:vertical}
+.fl{display:block;font-size:13px;color:var(--muted);margin-top:8px}
+.res{background:var(--bg);border-radius:12px;padding:12px;margin:10px 0;font-size:14px;line-height:1.5}
+.res b{font-size:20px;color:var(--accent)}
+.row2{display:flex;gap:8px;margin-top:10px}.row2 .btn{flex:1}.row2 .btn.ghost{flex:none}
+.ok{color:var(--ok);font-weight:600;padding:16px 0}
+.cart{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--accent);color:var(--accent-t);border:0;border-radius:999px;padding:22px 34px;font-size:26px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.tab{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}.tab.on{color:var(--text);border-color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;padding:28px 0}
+.hero h2{font-size:34px;line-height:1.1;letter-spacing:-.8px;margin:8px 0}
+.tag{font-size:12px;color:var(--accent);font-weight:600}
+.hero .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.hero .row .btn{width:auto;padding:12px 18px}
+.hero ul{list-style:none;padding:0;margin:0;color:var(--muted);font-size:14px;display:flex;gap:16px;flex-wrap:wrap}
+.hero ul li::before{content:"✓ ";color:var(--ok)}
+.art{background:var(--surface);border:1px solid var(--line);border-radius:18px;aspect-ratio:4/3;display:grid;place-items:center;color:var(--accent)}.art svg{width:80%;height:80%}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 10px}.sec h3{margin:0;font-size:22px;letter-spacing:-.4px}.sec a{font-size:13px;color:var(--accent);cursor:pointer}
+.brands{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.bt{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;color:var(--text);text-align:center;font:inherit;width:170px;max-width:100%}.bt b{display:block;font-size:16px}.bt span{font-size:12px;color:var(--muted)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}.cat b{display:block;margin-bottom:6px;cursor:pointer}.cat div{font-size:13px;color:var(--muted);line-height:1.7}
+.turnkey{background:var(--text);color:var(--bg);border-radius:18px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin:24px 0}.turnkey h3{font-size:24px;margin:6px 0}.turnkey .btn{width:auto;padding:12px 18px}.stats{display:flex;gap:24px}.stats b{font-size:26px;display:block}.stats span{font-size:12px;opacity:.7}
+.consult{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}.consult h3{margin:0 0 4px}.consult .btn{width:auto;padding:12px 18px}
+@media(max-width:640px){.hero,.turnkey{grid-template-columns:1fr}.hero h2{font-size:28px}.art{order:-1}}
+.card[data-p]{cursor:pointer}.card[data-p]:hover{border-color:var(--accent)}
+.lk{cursor:pointer;text-decoration:underline}
+.pg{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:24px;margin:12px 0 8px}
+.pg .ph{background:var(--surface);border:1px solid var(--line)}
+.ph3{font-size:20px;margin:26px 0 10px;letter-spacing:-.3px}
+.blank{min-height:60px;border:1px dashed var(--line);border-radius:12px}
+.spec{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.spec td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}.spec td:first-child{color:var(--muted);width:40%}
+.rv{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;font-size:14px}.st{color:var(--accent);font-size:13px}
+.rf{display:grid;gap:8px;max-width:480px;margin:12px 0 30px}.rf input,.rf select,.rf textarea{padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:inherit}
+@media(max-width:640px){.pg{grid-template-columns:1fr}}
+/* новое */
+.calc{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:8px;color:var(--text);font:inherit;cursor:pointer}
+.calc:hover{border-color:var(--accent)}
+.calc svg{width:40px;height:40px;color:var(--accent);flex:none}
+.calc b{display:block;font-size:17px}.calc span{font-size:13px;color:var(--muted)}
+.page p{font-size:18px;line-height:1.7;max-width:760px;margin:10px 0}.page h1{margin:4px 0 26px}
+.page .stats{margin:18px 0;flex-wrap:wrap;background:var(--text);color:var(--bg);border-radius:16px;padding:18px 22px}
+.feat .cat b{cursor:default}
+.hbtn{padding:8px 12px;font-size:13px}
+#cats{display:flex;flex-wrap:wrap;justify-content:center}
+#cats .cat{width:calc((100% - 24px)/3)}
+#cats .cat{text-align:center;display:flex;flex-direction:column;align-items:center}
+@media(max-width:860px){#cats .cat{width:calc((100% - 12px)/2)}}
+@media(max-width:520px){#cats .cat{width:100%}}
+.feat{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.feat .cat{width:270px;max-width:100%}
+.feat .cat b{text-align:center}
+#v-contacts .cat div{text-align:justify;hyphens:auto}
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+.wrap{width:100%}
+footer{margin-top:auto}
+
+.ph{position:relative}
+.tg{position:absolute;top:6px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;font-size:15px;line-height:1;padding:0}
+.tg.fv{right:6px}.tg.cp{left:6px}
+.tg.on,.hbtn.on{border-color:var(--accent);color:var(--accent)}
+.more{grid-column:1/-1;text-align:center}.more .btn{width:auto;padding:12px 28px}
+.tools input[type=number]{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:9px 12px;border-radius:10px;font-size:14px;width:110px}
+#dlg{width:min(480px,92vw)}
+.ci{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.cn{flex:1;font-size:14px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button,.cx{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;font-size:16px;line-height:1;padding:0}
+.ctot{text-align:right;font-size:16px;padding:10px 0}
+.pact{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cmpbar{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px 10px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);font-size:14px;z-index:5}
+.cmpbar[hidden]{display:none}
+.cmpbar .btn{width:auto;padding:8px 12px}
+.up{position:fixed;right:14px;bottom:calc(110px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:20px;cursor:pointer;display:none;z-index:5}
+.up.show{display:block}
+dialog.wide{width:min(900px,96vw)}
+.cmpw{overflow-x:auto}
+.cmpt td:first-child{width:auto;white-space:nowrap}
+.cmpt .btn{width:auto;margin:2px}
+.best{color:var(--ok)}
+.seg{display:flex;gap:6px;margin:6px 0 10px}
+.seg button{flex:1;padding:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+dialog input[type=checkbox]{width:auto;margin:0 8px 0 0}
+.chk2{display:flex;align-items:center;font-size:14px;margin-top:10px}
+.rrow{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:4px}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--text);cursor:pointer}
+.burger svg{width:24px;height:24px;display:block}
+@media(max-width:760px){.burger{display:block}.top{justify-content:space-between}nav{display:none;order:3;width:100%;flex-direction:column;gap:4px}nav.open{display:flex}nav .tab{text-align:left;padding:8px 0}.top>div:last-child{order:4;width:100%}.cmpbar{bottom:calc(110px + env(safe-area-inset-bottom,0px))}}
+.ph svg{width:60%;height:60%}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:10px;background:var(--surface)}
+.tg{z-index:2}
+.desc p{line-height:1.6;font-size:15px;max-width:760px;margin:0 0 10px}
+.banner{position:relative;aspect-ratio:3/2;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.banner svg{width:100%;height:100%;display:block}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.bn-t{display:none}
+.bn-s{display:none}
+@media(min-width:761px){
+.logo{font-size:32px;gap:12px}
+.logo i{width:42px;height:42px;border-radius:12px}
+.logo i::after{inset:10px 13px}
+.bn-t{display:block;position:absolute;left:14px;top:14px;z-index:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;max-width:80%}
+.bn-h{display:block;font-weight:700;font-size:18px}
+.bn-s{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+}
+.hero{grid-template-columns:1fr 1fr;gap:28px}
+.tagline{display:none}
+@media(max-width:640px){.hero{grid-template-columns:1fr;gap:16px;padding-top:16px}.hero .banner{order:-1}}
+@media(max-width:760px){
+.top{position:relative;justify-content:center}
+.brandbox{width:100%;text-align:center;padding:0 52px}
+.logo{justify-content:center;font-size:26px}
+.logo i{width:34px;height:34px;border-radius:10px}
+.logo i::after{inset:8px 10px}
+.tagline{display:block;font-size:12.5px;line-height:1.3;color:var(--muted);margin-top:4px}
+.burger{position:absolute;right:0;top:12px}
+.bn-t{display:block;position:absolute;left:12px;top:12px;z-index:1;font-style:italic;font-weight:600;font-size:18px;color:#fff;background:rgba(0,0,0,.3);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:6px 12px;border-radius:10px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+}
+#dcalc{width:min(460px,92vw)}
+.seg button{padding:8px 4px}
+.navstack{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+nav{align-items:flex-start}
+.favfab{display:none}
+@media(min-width:761px){
+.navstack .tab[data-v="fav"]{display:none}
+.favfab{display:block;position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--text);color:var(--bg);border:0;border-radius:999px;padding:12px 20px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5}
+.cmpbar{left:200px}
+}
+</style>
+</head>
+<body>
+<noscript><div style="background:#2f5d9e;color:#fff;padding:12px 16px;font-size:14px">Сайт открыт в приложении без поддержки JavaScript. Откройте файл в Safari или Chrome, иначе меню и кнопки не будут работать.</div></noscript>
+<header><div class="wrap">
+<div class="top">
+<div class="brandbox" data-v="home" style="cursor:pointer" title="На главную"><div class="logo"><i></i>ТеплоГрад</div><div class="tagline">Котлы, радиаторы, насосы и монтаж под ключ</div></div><button class="burger" id="burger" aria-label="Меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<nav id="nav"><button class="tab on" data-v="home">Главная</button><button class="tab" data-v="cat">Каталог</button><button class="tab" data-v="about">О компании</button><button class="tab" data-v="contacts">Контакты</button><div class="navstack"><button class="tab" data-calc="1">Калькулятор площади</button><button class="tab" data-v="fav"><span style="color:var(--accent)">♥</span> Избранное (<span id="favHead">0</span>)</button></div></nav>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><div><div class="phone">+7 (900) 000-00-00</div><div class="small">Пн–Пт 9:00–18:00</div></div><button class="btn ghost hbtn" data-help="1">Обратиться за помощью</button><button class="btn ghost hbtn" id="theme" aria-label="Сменить тему" title="Светлая / тёмная тема">◐</button></div>
+</div></div></header>
+
+<main class="wrap" id="v-home">
+<section class="hero"><div><div class="small" style="font-size:15px">Официальный дилер · 24 бренда · склад в вашем городе</div>
+<h2>Котёл и отопление для вашего дома — под ключ</h2>
+<div class="small" style="font-size:15px">Проконсультируем и доставим в ближайшее время. Гарантия до 5 лет.</div>
+<div class="row"><button class="btn" data-v="cat">Открыть каталог</button><button class="btn ghost" data-open="1">Проконсультироваться</button></div>
+<ul><li>Тысячи товаров в наличии</li><li>Быстрая доставка</li></ul></div>
+<div class="banner" id="banner"><img src="img/banner.jpg" alt="Счастливая семья на лужайке у своего дома"><div class="bn-t"><span class="bn-h">Тепло в вашем доме</span><span class="bn-s">Котлы, радиаторы, насосы и монтаж под ключ</span></div></div>
+</section>
+<button class="calc" data-calc="1"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="4"/><rect x="14" y="10" width="20" height="8" rx="1.5"/><path d="M15 26h2M23 26h2M31 26h2M15 33h2M23 33h2M31 33h2"/></svg><div><b>Калькулятор площади</b><span>Введите площадь дома — подскажем, какая мощность котла нужна</span></div></button>
+<div class="sec"><h3>Популярные бренды</h3><a data-v="cat">Все бренды →</a></div>
+<div class="brands" id="brands"></div>
+<div class="sec"><h3>Категории</h3></div>
+<div class="cats" id="cats"></div>
+<div class="sec"><h3>Хиты продаж</h3><a data-v="cat">Весь каталог →</a></div>
+<div class="grid" id="hits"></div>
+<div id="recentWrap" hidden><div class="sec"><h3>Вы смотрели</h3><a id="recClear">Очистить</a></div><div class="grid" id="recent"></div></div>
+<section class="turnkey"><div><div class="tag" style="color:var(--accent)">Монтаж под ключ</div><h3>Котельная под ключ — от 45 000 ₽</h3><div style="opacity:.75">Гарантия лучшей цены.</div><button class="btn" style="margin-top:12px" data-open="1">Получить предложение</button></div>
+<div class="stats"><div><b>300+</b><span>котельных</span></div><div><b>2 года</b><span>гарантии</span></div></div></section>
+<section class="consult"><div><h3>Получите консультацию менеджера</h3><div class="small" style="font-size:14px">Расскажем, какой котёл подойдёт вашему дому. Бесплатно, без навязывания.</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-open="1">Жду звонка</button><button class="btn ghost" data-help="1">Обратиться за помощью</button></div></section>
+</main>
+
+<main class="wrap" id="v-cat" hidden>
+<div class="crumbs"><span data-v="home" style="cursor:pointer;text-decoration:underline">Главная</span> / Бренды / <span id="bn">Все бренды</span></div>
+<h1 id="bh">Каталог</h1>
+<div class="small"><span id="cnt"></span></div>
+<div class="promo" style="margin:12px 0 4px"><div><b>Не уверены, какая модель подойдёт?</b><div class="small" style="color:inherit;opacity:.7">Инженер подберёт по площади дома и разводке.</div></div><button class="btn" data-calc="1">Калькулятор площади</button></div>
+<div class="bar" id="chips"></div>
+<div class="tools">
+<input type="search" id="q" placeholder="Поиск по названию">
+<select id="fb" aria-label="Бренд"><option value="">Все бренды</option></select>
+<select id="fc" aria-label="Категория"><option value="">Все категории</option></select>
+<select id="fp" aria-label="Мощность"><option value="">Любая мощность</option><option value="0-2">до 2 кВт</option><option value="2-10">2–10 кВт</option><option value="10-24">10–24 кВт</option><option value="24-1000">более 24 кВт</option></select>
+<input type="number" id="pmin" min="0" placeholder="Цена от" inputmode="numeric"><input type="number" id="pmax" min="0" placeholder="Цена до" inputmode="numeric">
+<label class="chk"><input type="checkbox" id="stock" checked> Только в наличии</label>
+<label class="chk"><input type="checkbox" id="favOnly"> ♥ Только избранное (<span id="favN">0</span>)</label>
+<select id="sort"><option value="pop">Сначала популярные</option><option value="asc">Сначала дешёвые</option><option value="desc">Сначала дорогие</option><option value="name">По названию</option></select>
+<button class="btn ghost hbtn" id="rst">Сбросить</button>
+</div>
+<div class="grid" id="grid"></div>
+</main>
+
+<main class="wrap" id="v-prod" hidden><div id="pp"></div></main>
+
+<main class="wrap page" id="v-about" hidden>
+<div class="crumbs"><span data-v="home" class="lk">Главная</span> / О компании</div>
+<h1>О компании ТеплоГрад</h1>
+<p>ТеплоГрад поставляет и монтирует отопительное оборудование для частных домов, коттеджей и небольших предприятий. Мы подбираем котлы, радиаторы, насосы, дымоходы и комплектующие, а при необходимости берём на себя весь монтаж — от проекта до запуска котельной.</p>
+<p>Мы работаем напрямую с производителями, поэтому гарантия и сертификаты оформляются без посредников, а цены остаются честными. Ходовые позиции всегда есть на складе в вашем городе.</p>
+<div class="stats"><div><b>24</b><span>бренда</span></div><div><b>300+</b><span>котельных под ключ</span></div><div><b>до 5 лет</b><span>гарантия на оборудование</span></div><div><b>2 года</b><span>гарантия на монтаж</span></div></div>
+<div class="sec"><h3>Почему выбирают нас</h3></div>
+<div class="cats feat">
+<div class="cat"><b>Официальный дилер</b><div>Прямые поставки от производителей, документы и гарантия без посредников.</div></div>
+<div class="cat"><b>Склад в вашем городе</b><div>Тысячи товаров в наличии, быстрая доставка в ближайшее время.</div></div>
+<div class="cat"><b>Инженерный подбор</b><div>Рассчитываем мощность по площади дома и схеме разводки.</div></div>
+<div class="cat"><b>Монтаж под ключ</b><div>Проект, установка и запуск котельной. Гарантия на работы — 2 года.</div></div>
+<div class="cat"><b>Гарантия лучшей цены</b><div>Нашли дешевле — пересчитаем стоимость.</div></div>
+<div class="cat"><b>Поддержка</b><div>Консультации по телефону и онлайн, помощь после покупки.</div></div>
+</div>
+<div class="sec"><h3>Наши бренды</h3></div>
+<div class="small" style="font-size:14px;margin-bottom:30px" id="aboutBrands"></div>
+</main>
+
+<main class="wrap page" id="v-contacts" hidden>
+<div class="crumbs"><span data-v="home" class="lk">Главная</span> / Контакты</div>
+<h1>Контакты</h1>
+<div class="cats feat" style="margin-top:14px">
+<div class="cat"><b>Телефон</b><div>+7 (900) 000-00-00. Звоните нам в рабочее время, ответим на любые вопросы по подбору оборудования.</div></div>
+<div class="cat"><b>Электронная почта</b><div>info@teplograd.example. Ответим на ваше письмо в течение рабочего дня.</div></div>
+<div class="cat"><b>Адрес склада и офиса</b><div>г. Ваш город, ул. Складская, 12. Самовывоз со склада возможен по предварительной заявке.</div></div>
+<div class="cat"><b>Режим работы</b><div>Пн–Пт: с 9:00 до 18:00. Суббота и воскресенье — выходные дни.</div></div>
+</div>
+<section class="consult" style="margin-top:20px"><div><h3>Остались вопросы?</h3><div class="small" style="font-size:14px">Напишите нам — подскажем по подбору оборудования и монтажу.</div></div><button class="btn" data-help="1">Обратиться за помощью</button></section>
+</main>
+
+<main class="wrap" id="v-fav" hidden>
+<div class="crumbs"><span data-v="home" class="lk">Главная</span> / Избранное</div>
+<h1>Избранное</h1>
+<div class="small"><span id="favcnt"></span></div>
+<div class="grid" id="favgrid" style="margin-top:12px"></div>
+</main>
+
+<footer><div class="wrap">ТеплоГрад — продажа и монтаж отопительного оборудования.<br>© 2026 ТеплоГрад · Демо-версия, цены и товары — примеры</div></footer>
+
+<button class="favfab" id="favFab" data-v="fav">♥ Избранное (<span id="favFabN">0</span>)</button>
+<div class="cmpbar" id="cmpbar" hidden><span>Сравнение: <b id="cmpN">0</b> из 3</span><button class="btn" data-cmpopen="1">Сравнить</button><button class="btn ghost" data-cmpclear="1" aria-label="Очистить сравнение">×</button></div>
+<button class="up" id="up" aria-label="Наверх">↑</button>
+<button class="cart" id="cartBtn">Заявка: <span id="cartN">0</span></button>
+
+<dialog id="dlg"><form id="f">
+<h3 style="margin:0 0 8px">Оставить заявку</h3>
+<div id="clist"></div>
+<input placeholder="Ваше имя" required><input placeholder="Телефон" type="tel" required>
+<button class="btn" style="margin-top:8px">Отправить</button>
+<div id="fst" class="small" style="margin-top:8px" hidden></div>
+</form></dialog>
+
+<dialog id="dcmp" class="wide"><h3 style="margin:0 0 10px">Сравнение товаров</h3><div id="cmpbody"></div>
+<div class="row2"><button class="btn ghost" type="button" data-cmpclear="1">Очистить</button><button class="btn ghost" type="button" data-close="dcmp">Закрыть</button></div></dialog>
+
+<dialog id="dcalc">
+<h3 style="margin:0 0 8px">Калькулятор отопления</h3>
+<div class="seg"><button type="button" class="on" data-cm="boiler">Мощность котла</button><button type="button" data-cm="rad">Радиаторы по комнатам</button><button type="button" data-cm="floor">Тёплый пол</button></div>
+<div id="cm-boiler">
+<div class="small">Приблизительный расчёт: около 1 кВт на 10 м² с учётом высоты потолков, климата, утепления, горячей воды и запаса 20%.</div>
+<label class="fl">Площадь дома, м²<input id="ca" type="number" min="10" max="2000" step="1" inputmode="decimal" placeholder="Например, 120"></label>
+<label class="fl">Высота потолков<select id="ch"><option value="2.5">2,5 м</option><option value="2.7" selected>2,7 м (стандарт)</option><option value="3">3 м</option><option value="3.5">3,5 м и выше</option></select></label>
+<label class="fl">Климат региона<select id="cr"><option value="0.8">Юг (мягкая зима)</option><option value="1" selected>Центральная полоса</option><option value="1.3">Север, Урал, Сибирь</option><option value="1.6">Крайний север</option></select></label>
+<label class="fl">Теплоизоляция дома<select id="ci"><option value="0.8">Хорошо утеплён (современный дом)</option><option value="1" selected>Обычный (кирпич, блок)</option><option value="1.25">Слабо утеплён (старый дом)</option></select></label>
+<label class="chk2"><input type="checkbox" id="cw"> Нужна горячая вода (двухконтурный котёл)</label>
+</div>
+<div id="cm-rad" hidden>
+<div class="small">Добавляйте комнаты по очереди — посчитаем мощность радиаторов и число секций для каждой комнаты и для всего дома (≈100 Вт на м²).</div>
+<label class="fl">Название комнаты (необязательно)<input id="rn2" placeholder="Например, Гостиная"></label>
+<label class="fl">Площадь комнаты, м²<input id="ra" type="number" min="3" max="200" step="0.5" inputmode="decimal" placeholder="Например, 18"></label>
+<label class="fl">Высота потолков<select id="rh"><option value="2.5">2,5 м</option><option value="2.7" selected>2,7 м (стандарт)</option><option value="3">3 м</option><option value="3.5">3,5 м и выше</option></select></label>
+<label class="fl">Наружных стен в комнате<select id="rw"><option value="1">1 стена</option><option value="1.15">2 стены (угловая)</option><option value="1.3">3 стены и более</option></select></label>
+<label class="fl">Климат региона<select id="rc"><option value="0.8">Юг (мягкая зима)</option><option value="1" selected>Центральная полоса</option><option value="1.3">Север, Урал, Сибирь</option><option value="1.6">Крайний север</option></select></label>
+<div class="row2"><button class="btn" type="button" id="radd">Добавить комнату</button></div>
+<div id="rrooms"></div>
+</div>
+<div id="cm-floor" hidden>
+<div class="small">Подберём материалы для водяного или электрического тёплого пола. Расчёт ориентировочный.</div>
+<label class="fl">Тип тёплого пола<select id="ft"><option value="water">Водяной (труба)</option><option value="el">Электрический (нагревательный мат)</option></select></label>
+<label class="fl">Площадь укладки, м²<input id="fa" type="number" min="2" max="500" step="0.5" inputmode="decimal" placeholder="Например, 15"></label>
+<div id="fwater">
+<label class="fl">Шаг укладки трубы<select id="fs"><option value="0.1">10 см (холодные помещения)</option><option value="0.15" selected>15 см (стандарт)</option><option value="0.2">20 см (тёплые помещения)</option></select></label>
+<label class="fl">Расстояние до коллектора, м<input id="fd" type="number" min="0" max="50" step="0.5" value="5" inputmode="decimal"></label>
+</div>
+</div>
+<div id="cres" class="res" hidden></div>
+<div class="row2"><button class="btn" type="button" id="cgo">Рассчитать</button><button class="btn ghost" type="button" data-close="dcalc">Закрыть</button></div>
+</dialog>
+
+<dialog id="dhelp"><form id="hf">
+<h3 style="margin:0 0 6px">Обратиться за помощью</h3>
+<div id="hfields">
+<div class="small">Оставьте email и опишите вопрос — мы ответим в рабочее время.</div>
+<label class="fl">Ваш email<input id="he" type="email" required placeholder="name@example.com"></label>
+<label class="fl">Ваш вопрос<textarea id="hq" rows="4" required placeholder="Опишите, чем мы можем помочь"></textarea></label>
+<div class="row2"><button class="btn" type="submit">Отправить</button><button class="btn ghost" type="button" data-close="dhelp">Отмена</button></div>
+</div>
+<div id="herr" class="small" style="color:var(--accent);margin-top:8px" hidden></div>
+<div id="hok" class="ok" hidden>Спасибо! Ваш вопрос отправлен. Мы ответим на указанный email.</div>
+</form></dialog>
+
+<script>
+/* ===== Отправка в Telegram =====
+   Сайт НЕ хранит токен бота. Сообщение уходит на функцию Netlify,
+   а токен и id чата лежат в переменных окружения Netlify (TG_TOKEN, TG_CHAT). */
+var TG={proxy:"/.netlify/functions/telegram"};
+function tgSend(text){
+return fetch(TG.proxy,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:text})}).then(function(r){if(!r.ok)throw new Error("send")})}
+
+var ICON={
+fit:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M8 30h16V14h16"/><circle cx="8" cy="30" r="3"/><circle cx="40" cy="14" r="3"/></svg>',
+pump:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="26" r="12"/><path d="M24 14V6h8M24 26l6-4M24 26l-6 4"/></svg>',
+valve:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 32h36M24 32V16M16 16h16"/><circle cx="24" cy="32" r="5"/></svg>',
+coll:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 20h36v8H6zM14 28v10M24 28v10M34 28v10"/></svg>'};
+
+/* ===== Каталог: данные берутся из файла products.json (его правит админка /admin) =====
+   Внутри сайта товар хранится как массив:
+   [название, цена, раздел, значок, в наличии (1/0), артикул, бренд, мощность кВт]
+   X — дополнительные данные: своё описание, свои характеристики, своя картинка. */
+var P=[],X=[];
+var SECICON={"Насосное оборудование":"pump","Запорная арматура":"valve","Коллектор":"coll","Отопительные котлы":"boil","Водонагреватели":"boil","Радиаторы отопления":"rad","Дымоходы":"pipe"};
+function loadData(d){
+(d.products||[]).forEach(function(p){
+if(!p||!p.name)return;
+var sp=(p.specs||[]).filter(function(s){return s&&s.name&&s.value}).map(function(s){return [String(s.name),String(s.value)]});
+P.push([String(p.name),Number(p.price)||0,p.section||"Комплектующие",p.icon||SECICON[p.section]||"fit",p.inStock===false?0:1,String(p.sku||""),p.brand||"Tim",Number(p.power)||0]);
+X.push({desc:String(p.description||"").trim(),specs:sp,image:p.image||""})})}
+
+function boot(){
+var cur=null;function bp(){return P.filter(function(p){return !cur||(p[6]||"Tim")==cur})}
+var SV='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">';
+ICON.boil=SV+'<rect x="12" y="6" width="24" height="36" rx="5"/><circle cx="24" cy="18" r="5"/><path d="M18 32h12"/></svg>';
+ICON.rad=SV+'<path d="M8 12h32v24H8zM16 12v24M24 12v24M32 12v24"/></svg>';
+ICON.pipe=SV+'<path d="M6 20h36v8H6zM14 20v8M34 20v8"/></svg>';
+/* ===== Иллюстрации товаров ===== */
+var S2='<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">',F='fill="currentColor" fill-opacity=".14"';
+ICON.boil=S2+'<rect x="14" y="6" width="36" height="44" rx="6" '+F+'/><rect x="20" y="12" width="24" height="9" rx="2"/><circle cx="32" cy="34" r="8"/><path d="M32 30v4l3 2"/><path d="M21 50v9M32 50v9M43 50v9"/></svg>';
+ICON.heater=S2+'<path d="M18 14a14 5 0 0 1 28 0v36a14 5 0 0 1-28 0z" '+F+'/><path d="M18 14a14 5 0 0 0 28 0"/><path d="M26 6h12"/><circle cx="32" cy="32" r="5"/><path d="M24 58v-4M40 58v-4"/></svg>';
+ICON.rad=S2+'<rect x="8" y="12" width="48" height="34" rx="4" '+F+'/><path d="M18 12v34M28 12v34M38 12v34M48 12v34"/><path d="M14 46v10M50 46v10"/></svg>';
+ICON.pump=S2+'<circle cx="32" cy="38" r="15" '+F+'/><circle cx="32" cy="38" r="5"/><rect x="24" y="8" width="16" height="14" rx="3"/><path d="M32 22v1M4 38h13M47 38h13"/></svg>';
+ICON.valve=S2+'<path d="M4 44h56"/><rect x="22" y="34" width="20" height="20" rx="5" '+F+'/><path d="M32 34V18M20 18h24"/><circle cx="32" cy="44" r="3"/></svg>';
+ICON.fit=S2+'<rect x="8" y="40" width="10" height="12" rx="2" '+F+'/><rect x="27" y="8" width="10" height="10" rx="2" '+F+'/><path d="M18 46h14V18"/></svg>';
+ICON.coll=S2+'<rect x="6" y="14" width="52" height="12" rx="4" '+F+'/><path d="M16 26v22M28 26v22M40 26v22M52 26v22"/><circle cx="16" cy="52" r="3"/><circle cx="28" cy="52" r="3"/><circle cx="40" cy="52" r="3"/><circle cx="52" cy="52" r="3"/></svg>';
+ICON.hose=S2+'<rect x="4" y="30" width="10" height="12" rx="2" '+F+'/><rect x="50" y="30" width="10" height="12" rx="2" '+F+'/><path d="M14 36c5-12 10 12 15 0s10 12 15 0 4-4 6 0"/></svg>';
+ICON.tube=S2+'<circle cx="32" cy="32" r="22" '+F+'/><circle cx="32" cy="32" r="14"/><circle cx="32" cy="32" r="5"/></svg>';
+ICON.chim=S2+'<rect x="19" y="6" width="26" height="52" rx="3" '+F+'/><rect x="26" y="6" width="12" height="52"/><path d="M15 20h34M15 44h34"/></svg>';
+ICON.mat=S2+'<rect x="8" y="12" width="48" height="40" rx="4" '+F+'/><path d="M16 20h32v8H16v8h32v8"/></svg>';
+ICON.therm=S2+'<rect x="14" y="8" width="36" height="48" rx="6" '+F+'/><circle cx="32" cy="30" r="10"/><path d="M32 30l5-5M26 47h12"/></svg>';
+function iconKey(i){var p=P[i],s=p[2],k=p[3];
+if(s=="Тёплый пол"){var w=p[0].toLowerCase();return /скоба|шина|евроконус/.test(w)?"fit":/труба/.test(w)?"tube":/коллектор/.test(w)?"coll":/насос|смесительный узел/.test(w)?"pump":/терморегулятор|датчик/.test(w)?"therm":/сервопривод/.test(w)?"valve":/скоба|шина|евроконус/.test(w)?"fit":"mat"}if(s=="Дымоходы")return"chim";if(s=="Водонагреватели")return"heater";if(s=="Комплектующие"&&k=="pipe")return /труба/i.test(p[0])?"tube":"hose";return k}
+function imgSrc(i){return (X[i]&&X[i].image)||"img/"+P[i][5]+".jpg"}
+function pic(i){return (ICON[iconKey(i)]||ICON.fit)+'<img src="'+esc(imgSrc(i))+'" alt="" loading="lazy" onerror="this.remove()">'}
+
+/* ===== Описания и характеристики (демо) ===== */
+function dinfo(i){
+var p=P[i],n=p[0],l=n.toLowerCase(),pw=p[7]||0,ar=Math.round(pw*10),k=pw?kw(pw):"",s=p[2],b=p[6]||"Tim",t="",u="",ex=[],m;
+function R(re,txt,use){if(!t&&re.test(l)){t=txt;u=use}}
+if(m=n.match(/(\d{2})\s+(\d{3})[×x](\d{3,4})/)){ex.push(["Тип панели",m[1]],["Высота",m[2]+" мм"],["Длина",m[3]+" мм"])}
+if(m=n.match(/(\d+)\s*секц/)){ex.push(["Количество секций",m[1]])}
+if(/водонагреватель|бойлер/.test(l)&&(m=n.match(/(\d+)\s*л(?![а-я])/))){ex.push(["Объём",m[1]+" л"])}
+if(s=="Дымоходы"){if(m=n.match(/(\d{2,3}\/\d{2,3}|\d{3}\s*мм)/))ex.push(["Диаметр",m[1].replace(/\s+/g," ")+(/мм/.test(m[1])?"":" мм")]);if(m=n.match(/(\d+(?:,\d+)?)\s*м(?![а-я])/))ex.push(["Длина",m[1]+" м"])}
+if(/фитинги/.test(s)&&(m=n.match(/(\d{2})\s*[*xх×-]/)))ex.push(["Диаметр трубы",m[1]+" мм"]);
+if(/^труба/.test(l)&&(m=n.match(/(\d{2})\s*[×x]\s*(\d(?:,\d)?)/)))ex.push(["Диаметр",m[1]+" мм"],["Толщина стенки",m[2]+" мм"]);
+if(/нагревательный мат/.test(l)&&(m=n.match(/(\d+)\s*Вт\/м²,\s*(\d+)\s*м²/)))ex.push(["Удельная мощность",m[1]+" Вт/м²"],["Площадь",m[2]+" м²"]);
+var ap=ar?" Хватает для помещений площадью примерно до "+ar+" м² (по расчёту около 1 кВт на 10 м²).":"";
+R(/pe-rt/,"Труба из полиэтилена повышенной термостойкости PE-RT для водяного тёплого пола. Поставляется в бухте.","Водяной тёплый пол");
+R(/коллекторный шкаф/,"Встраиваемый шкаф для размещения коллектора тёплого пола и запорной арматуры.","Водяной тёплый пол");
+R(/демпферная/,"Лента по периметру помещения компенсирует расширение стяжки при нагреве.","Водяной тёплый пол");
+R(/скоба/,"Крепит трубу тёплого пола к теплоизоляции при укладке.","Водяной тёплый пол");
+R(/теплоизоляция/,"Подложка с фольгированным слоем под водяной тёплый пол: уменьшает потери тепла вниз.","Водяной тёплый пол");
+R(/направляющая шина/,"Шина для укладки трубы тёплого пола с ровным шагом.","Водяной тёплый пол");
+R(/смесительный узел/,"Смесительный узел поддерживает нужную температуру теплоносителя для тёплого пола, смешивая воду из подачи и обратки.","Водяной тёплый пол");
+R(/терморегулятор/,"Поддерживает заданную температуру пола по сигналу датчика.","Управление тёплым полом");
+R(/сервопривод/,"Открывает и закрывает контур коллектора по команде терморегулятора.","Управление тёплым полом");
+R(/датчик температуры пола/,"Измеряет температуру пола и передаёт её терморегулятору.","Управление тёплым полом");
+R(/евроконус/,"Присоединительный фитинг для подключения трубы к коллектору.","Водяной тёплый пол");
+R(/нагревательный мат/,"Электрический нагревательный мат для укладки под плитку. Общая мощность — "+k+".","Электрический тёплый пол");
+R(/газовый настенный/,"Настенный газовый котёл мощностью "+k+". Компактный, занимает мало места, подходит для частного дома или квартиры с автономным отоплением."+ap,"Отопление дома");
+R(/газовый напольный/,"Напольный газовый котёл мощностью "+k+". Устанавливается на пол, поэтому подходит для котельной или отдельного помещения."+ap,"Отопление дома");
+R(/электрический котёл/,"Электрический котёл мощностью "+k+". Не требует газа и дымохода — достаточно электросети подходящей мощности."+ap,"Отопление дома");
+R(/радиатор стальной/,"Стальной панельный радиатор: быстро прогревается и равномерно отдаёт тепло. Тепловая мощность — "+k+"."+ap,"Отопление помещений");
+R(/радиатор алюминиевый/,"Алюминиевый секционный радиатор с хорошей теплоотдачей и небольшим весом. Тепловая мощность — "+k+"."+ap,"Отопление помещений");
+R(/биметаллический/,"Биметаллический секционный радиатор: стальной сердечник и алюминиевый корпус. Тепловая мощность — "+k+"."+ap,"Отопление помещений");
+R(/накопительный водонагреватель/,"Накопительный водонагреватель"+(pw?" с тэном "+k:"")+": нагревает воду заранее и хранит запас. Подходит для кухни, ванной или небольшого дома.","Горячая вода");
+R(/проточный/,"Проточный электрический водонагреватель мощностью "+k+". Греет воду в момент использования и занимает мало места.","Горячая вода");
+R(/бойлер косвенного/,"Бойлер косвенного нагрева: нагревает воду от системы отопления котла. Подходит для дома с постоянной потребностью в горячей воде.","Горячая вода");
+R(/насосная станция/,"Насосная станция для водоснабжения дома или дачи из колодца или скважины. Поддерживает давление в системе и включается автоматически.","Водоснабжение");
+R(/циркуляционный насос/,"Циркуляционный насос для принудительного движения теплоносителя в системе отопления.","Отопление");
+R(/скважинный/,"Погружной насос для подачи воды из скважины.","Водоснабжение");
+R(/гидроаккумулятор/,"Мембранный бак для поддержания давления в системе водоснабжения: насос включается реже.","Водоснабжение");
+R(/сухого хода/,"Защищает насос от работы без воды: отключает его при пропадании воды в системе.","Защита насоса");
+R(/реле давления/,"Автоматически включает и выключает насос в зависимости от давления в системе.","Автоматика насоса");
+R(/контроллер|автоматика/,"Автоматика для насоса: следит за давлением и управляет запуском и остановкой.","Автоматика насоса");
+R(/сэндвич-дымоход/,"Двухстенный дымоход с утеплителем между стенками для отвода продуктов горения от котла.","Отвод дыма");
+R(/коаксиальный дымоход/,"Коаксиальный дымоход «труба в трубе»: отводит дым и подаёт воздух в котёл с улицы. Для настенных котлов с закрытой камерой.","Отвод дыма");
+R(/колено/,"Колено для изменения направления дымохода при монтаже.","Отвод дыма");
+R(/дефлектор/,"Устанавливается на оголовок дымохода: защищает от осадков и помогает тяге.","Отвод дыма");
+R(/адаптер/,"Переходник для подключения дымохода к патрубку котла.","Отвод дыма");
+R(/бинокль/,"Угловой кран-бинокль для подключения радиатора: позволяет перекрыть подачу теплоносителя на приборе.","Запорная арматура");
+R(/кран/,"Шаровой кран для перекрытия воды или теплоносителя на участке системы.","Запорная арматура");
+R(/клапан 3-ходовой/,"Трёхходовой клапан для распределения потока теплоносителя, например при подключении бойлера или тёплого пола.","Регулирование потока");
+R(/коллекторная группа/,"Готовая коллекторная группа из нержавеющей стали для распределения теплоносителя по контурам.","Распределение теплоносителя");
+R(/коллектор/,"Вентильный коллектор для распределения теплоносителя по контурам радиаторов или тёплого пола.","Распределение теплоносителя");
+if(!t&&/фитинги/.test(s)){var sh=/тройник/.test(l)?"Тройник":/уголок|угол/.test(l)?"Угловой фитинг":"Соединительный фитинг";
+var st=s=="Обжимные фитинги"?"Обжимное соединение собирается без пайки и сварки — достаточно гаечного ключа.":s=="Пресс-фитинги"?"Пресс-фитинг даёт неразъёмное соединение, которое выполняется пресс-инструментом.":"Аксиальный фитинг соединяет трубы из сшитого полиэтилена надвижной гильзой.";
+t=sh+" для монтажа систем отопления и водоснабжения. "+st;u="Монтаж трубопроводов"}
+R(/газовая подводка/,"Гибкая подводка для подключения газовых приборов.","Подключение приборов");
+R(/подводка|шланг/,"Гибкая подводка для подключения сантехники и радиаторов, удобна там, где нужна небольшая подвижность.","Подключение приборов");
+R(/^труба/,"Многослойная металлопластиковая труба для отопления и водоснабжения. Поставляется в бухте.","Монтаж трубопроводов");
+R(/манометр/,"Показывает давление в системе отопления или водоснабжения.","Контроль давления");
+R(/штуцер/,"Штуцер для подключения датчиков давления и автоматики к системе.","Монтаж автоматики");
+R(/фильтр/,"Фильтр грубой очистки: защищает оборудование от песка и ржавчины.","Защита оборудования");
+if(!t){t="Товар из раздела «"+s+"» бренда "+b+".";u=s}
+return{t:t,u:u,ex:ex}}
+function descHTML(i){var p=P[i],d=dinfo(i),c=X[i]&&X[i].desc;
+if(c)return '<div class="desc">'+c.split(/\n+/).map(function(s){return '<p>'+esc(s)+'</p>'}).join("")+'</div>';
+return '<div class="desc"><p>'+esc(d.t)+'</p><p>Бренд — '+(p[6]||"Tim")+', артикул '+p[5]+'. Доставка со склада в вашем городе, гарантия — по условиям производителя.</p><div class="small">Описание в демо-версии примерное и будет заменено данными поставщика.</div></div>'}
+function specExtra(i){var cs=X[i]&&X[i].specs;
+if(cs&&cs.length)return cs.map(function(x){return '<tr><td>'+esc(x[0])+'</td><td>'+esc(x[1])+'</td></tr>'}).join("");
+var d=dinfo(i),r=d.u?[["Назначение",d.u]]:[];r=r.concat(d.ex);
+return r.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+esc(x[1])+'</td></tr>'}).join("")}
+
+var sec="Все",cart=[];
+var $=function(i){return document.getElementById(i)};
+var fmt=function(n){return n.toLocaleString("ru-RU")+" ₽"};
+var kw=function(n){return String(n).replace(".",",")+" кВт"};
+function chips(){
+var L=bp();var s=["Все"];L.forEach(function(p){if(s.indexOf(p[2])<0)s.push(p[2])});
+$("chips").innerHTML=s.map(function(x){
+var n=x=="Все"?L.length:L.filter(function(p){return p[2]==x}).length;
+return '<button class="chip'+(x==sec?' on':'')+'" data-s="'+x+'">'+x+' '+n+'</button>'}).join("");
+}
+/* ===== Хранилище и состояние ===== */
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+cart=ld("tg_cart",[]).filter(function(c){return c&&P[c.i]&&c.q>0});
+var fav=ld("tg_fav",[]).filter(function(i){return P[i]});
+var cmp=ld("tg_cmp",[]).filter(function(i){return P[i]}).slice(0,3);
+var rec=ld("tg_rec",[]).filter(function(i){return P[i]});
+
+/* ===== Корзина ===== */
+function cartCount(){return cart.reduce(function(a,c){return a+c.q},0)}
+function cartSave(){sv("tg_cart",cart);$("cartN").textContent=cartCount()}
+function cartAdd(i){var c=cart.filter(function(x){return x.i==i})[0];if(c)c.q++;else cart.push({i:i,q:1});cartSave()}
+function cartQ(i,d){var c=cart.filter(function(x){return x.i==i})[0];if(!c)return;c.q+=d;if(c.q<=0)cart.splice(cart.indexOf(c),1);cartSave();renderCart()}
+function renderCart(){var h="",tot=0;
+cart.forEach(function(c){var p=P[c.i];tot+=p[1]*c.q;
+h+='<div class="ci"><div class="cn">'+esc(p[0])+'<div class="small">'+fmt(p[1])+' за шт.</div></div><div class="qty"><button type="button" data-dec="'+c.i+'">−</button><span>'+c.q+'</span><button type="button" data-inc="'+c.i+'">+</button></div><button type="button" class="cx" data-del="'+c.i+'" title="Удалить">×</button></div>'});
+$("clist").innerHTML=cart.length?h+'<div class="ctot">Итого: <b>'+fmt(tot)+'</b></div>':'<div class="small" style="margin-bottom:8px">Корзина пуста — можно отправить заявку на консультацию по подбору оборудования.</div>'}
+function openCart(){renderCart();if(!$("dlg").open)$("dlg").showModal()}
+
+/* ===== Избранное, сравнение, просмотренные ===== */
+function favToggle(i){var k=fav.indexOf(i);if(k>-1)fav.splice(k,1);else fav.push(i);sv("tg_fav",fav);$("favN").textContent=fav.length;syncMarks();favUpdate();if($("favOnly").checked)render();if(curView=="fav")renderFav()}
+function favUpdate(){$("favHead").textContent=fav.length;$("favFabN").textContent=fav.length}
+function renderFav(){var h=fav.slice().reverse().map(function(k){return cardHTML(k)}).join("");
+$("favgrid").innerHTML=h||'<div class="empty">Пока ничего нет. Нажимайте ♥ на карточках товаров — они появятся здесь.<br><button class="btn" data-v="cat" style="width:auto;margin-top:12px;padding:10px 18px">Открыть каталог</button></div>';
+$("favcnt").textContent=fav.length?"Товаров: "+fav.length:"";syncMarks()}
+function cmpToggle(i){var k=cmp.indexOf(i);if(k>-1)cmp.splice(k,1);else{if(cmp.length>=3)cmp.shift();cmp.push(i)}cmpSave()}
+function cmpSave(){sv("tg_cmp",cmp);syncMarks();cmpBar()}
+function cmpBar(){$("cmpbar").hidden=!cmp.length;$("cmpN").textContent=cmp.length}
+function syncMarks(){
+document.querySelectorAll("[data-fav]").forEach(function(b){var on=fav.indexOf(+b.dataset.fav)>-1;b.classList.toggle("on",on);if(b.classList.contains("hbtn"))b.textContent=on?"♥ В избранном":"♥ В избранное"});
+document.querySelectorAll("[data-cmp]").forEach(function(b){var on=cmp.indexOf(+b.dataset.cmp)>-1;b.classList.toggle("on",on);if(b.classList.contains("hbtn"))b.textContent=on?"⇄ В сравнении":"⇄ Сравнить"})}
+function openCmp(){var h="";
+if(cmp.length<2)h='<div class="small" style="padding:10px 0">Добавьте в сравнение минимум 2 товара — нажмите значок ⇄ на карточке.</div>';
+else{var minP=Math.min.apply(null,cmp.map(function(i){return P[i][1]}));
+var rows=[["Бренд",function(p){return p[6]||"Tim"}],["Артикул",function(p){return p[5]}],["Раздел",function(p){return p[2]}],["Мощность",function(p){return p[7]?kw(p[7]):"—"}],["Наличие",function(p){return p[4]?"В наличии":"Под заказ"}],["Цена",function(p){return '<b class="'+(p[1]==minP?"best":"")+'">'+fmt(p[1])+'</b>'}]];
+h='<div class="cmpw"><table class="spec cmpt"><tr><td></td>'+cmp.map(function(i){return '<td><b>'+esc(P[i][0])+'</b></td>'}).join("")+'</tr>'+
+rows.map(function(r){return '<tr><td>'+r[0]+'</td>'+cmp.map(function(i){return '<td>'+r[1](P[i])+'</td>'}).join("")+'</tr>'}).join("")+
+'<tr><td></td>'+cmp.map(function(i){return '<td><button class="btn hbtn" data-add="'+i+'">Заказать</button> <button class="btn ghost hbtn" data-cmprm="'+i+'">Убрать</button></td>'}).join("")+'</tr></table></div>'}
+$("cmpbody").innerHTML=h;if(!$("dcmp").open)$("dcmp").showModal()}
+var COMP={"Отопительные котлы":["Дымоходы","Насосное оборудование","Запорная арматура"],"Радиаторы отопления":["Запорная арматура","Комплектующие","Коллектор"],"Насосное оборудование":["Комплектующие","Запорная арматура"],"Водонагреватели":["Комплектующие","Запорная арматура"],"Дымоходы":["Отопительные котлы"],"Коллектор":["Запорная арматура","Обжимные фитинги","Комплектующие"],"Запорная арматура":["Комплектующие","Обжимные фитинги"],"Комплектующие":["Запорная арматура","Обжимные фитинги"],"Обжимные фитинги":["Коллектор","Пресс-фитинги"],"Пресс-фитинги":["Обжимные фитинги","Коллектор"],"Аксиальные фитинги":["Обжимные фитинги","Коллектор"],"Тёплый пол":["Коллектор","Насосное оборудование"]};
+function related(i){var p=P[i],out=[],b=p[6]||"Tim";
+function pick(arr,n){var c=0;arr.forEach(function(k){if(c<n&&out.length<4&&k!=i&&out.indexOf(k)<0&&P[k][4]){out.push(k);c++}})}
+var idx=P.map(function(x,k){return k});
+var same=idx.filter(function(k){return P[k][2]==p[2]}).sort(function(a,c){return ((P[c][6]||"Tim")==b)-((P[a][6]||"Tim")==b)});
+pick(same,2);
+(COMP[p[2]]||[]).forEach(function(s){pick(idx.filter(function(k){return P[k][2]==s}),1)});
+pick(same,4);pick(idx,4);
+return out}
+function relHTML(i){var h='<h3 class="ph3">Похожие товары</h3><div class="grid">'+related(i).map(function(k){return cardHTML(k)}).join("")+'</div>';
+var rc=rec.filter(function(k){return k!=i}).slice(0,4);
+if(rc.length)h+='<h3 class="ph3">Вы смотрели</h3><div class="grid">'+rc.map(function(k){return cardHTML(k)}).join("")+'</div>';
+return h}
+function recAdd(i){var k=rec.indexOf(i);if(k>-1)rec.splice(k,1);rec.unshift(i);rec=rec.slice(0,8);sv("tg_rec",rec)}
+function recent(){var w=$("recentWrap");if(!rec.length){w.hidden=true;return}
+w.hidden=false;$("recent").innerHTML=rec.slice(0,4).map(function(k){return cardHTML(k)}).join("");syncMarks()}
+function cardHTML(i){var p=P[i],b=p[6]||"Tim",pw=p[7]||0;
+return '<div class="card" data-p="'+i+'"><div class="ph"><button type="button" class="tg fv" data-fav="'+i+'" title="В избранное">♥</button><button type="button" class="tg cp" data-cmp="'+i+'" title="Сравнить">⇄</button>'+pic(i)+'</div><div class="brand">'+b+' · арт. '+p[5]+(pw?' · '+kw(pw):'')+'</div><div class="name">'+esc(p[0])+'</div>'+(p[4]?'<div class="stock">✓ В наличии</div>':'<div class="stock no">Под заказ</div>')+'<div class="price">'+fmt(p[1])+'</div><button class="btn" data-add="'+i+'">Заказать</button></div>'}
+
+/* ===== Каталог ===== */
+var PG=24,limit=PG,lastSig="";
+function render(){
+$("fb").value=cur||"";$("fc").value=sec=="Все"?"":sec;$("favN").textContent=fav.length;
+var q=$("q").value.toLowerCase(),o=$("sort").value,fp=$("fp").value,lo=0,hi=1e9;
+var pmin=parseFloat($("pmin").value),pmax=parseFloat($("pmax").value),fo=$("favOnly").checked;
+if(fp){var r=fp.split("-");lo=+r[0];hi=+r[1]}
+var sig=[q,o,fp,pmin,pmax,fo,cur,sec,$("stock").checked].join("|");
+if(sig!=lastSig){limit=PG;lastSig=sig}
+var l=P.map(function(p,i){return{n:p[0],pr:p[1],s:p[2],ic:p[3],st:p[4],a:p[5],i:i,b:p[6]||"Tim",pw:p[7]||0}}).filter(function(p){
+return(!cur||p.b==cur)&&(sec=="Все"||p.s==sec)&&(!$("stock").checked||p.st)&&(!fp||(p.pw>lo&&p.pw<=hi))&&(isNaN(pmin)||p.pr>=pmin)&&(isNaN(pmax)||p.pr<=pmax)&&(!fo||fav.indexOf(p.i)>-1)&&p.n.toLowerCase().indexOf(q)>-1});
+if(o=="asc")l.sort(function(a,b){return a.pr-b.pr});
+if(o=="desc")l.sort(function(a,b){return b.pr-a.pr});
+if(o=="name")l.sort(function(a,b){return a.n.localeCompare(b.n,"ru")});
+$("cnt").textContent="Показано "+Math.min(limit,l.length)+" из "+l.length+" товаров";
+var h=l.slice(0,limit).map(function(p){return cardHTML(p.i)}).join("");
+if(l.length>limit)h+='<div class="more"><button class="btn" id="more">Показать ещё ('+Math.min(PG,l.length-limit)+')</button></div>';
+$("grid").innerHTML=h||'<div class="empty">Ничего не найдено</div>';
+syncMarks();
+}
+document.addEventListener("click",function(e){
+var t=e.target;
+if(t.dataset.s){sec=t.dataset.s;chips();render()}
+if(t.dataset.add){cartAdd(+t.dataset.add);t.textContent="Добавлено ✓";setTimeout(function(){t.textContent="Заказать"},900)}
+if(t.closest("[data-open],#cartBtn"))openCart();
+if(t.id=="more"){limit+=PG;render()}
+if(t.id=="recClear"){rec=[];sv("tg_rec",rec);recent()}
+var a=t.closest("[data-fav]");if(a)favToggle(+a.dataset.fav);
+a=t.closest("[data-cmp]");if(a)cmpToggle(+a.dataset.cmp);
+a=t.closest("[data-inc]");if(a)cartQ(+a.dataset.inc,1);
+a=t.closest("[data-dec]");if(a)cartQ(+a.dataset.dec,-1);
+a=t.closest("[data-del]");if(a)cartQ(+a.dataset.del,-999);
+if(t.closest("[data-cmpopen]"))openCmp();
+if(t.closest("[data-cmpclear]")){cmp=[];cmpSave();if($("dcmp").open)$("dcmp").close()}
+a=t.closest("[data-cmprm]");if(a){var k=cmp.indexOf(+a.dataset.cmprm);if(k>-1)cmp.splice(k,1);cmpSave();openCmp()}
+});
+$("f").addEventListener("submit",function(e){
+e.preventDefault();
+var inp=$("f").querySelectorAll("input"),btn=$("f").querySelector("button.btn"),st=$("fst");
+var lines=["🛒 Новая заявка с сайта ТеплоГрад","Имя: "+inp[0].value,"Телефон: "+inp[1].value];
+if(cart.length){var tot=0;lines.push("Товары:");cart.forEach(function(c){var p=P[c.i];tot+=p[1]*c.q;lines.push("• "+p[0]+" (арт. "+p[5]+") × "+c.q+" = "+fmt(p[1]*c.q))});lines.push("Итого: "+fmt(tot))}
+else lines.push("Запрос: консультация по подбору оборудования");
+btn.disabled=true;btn.textContent="Отправка…";st.hidden=true;
+tgSend(lines.join("\n")).then(function(v){
+cart=[];cartSave();$("f").reset();renderCart();
+st.textContent="Спасибо! Заявка отправлена — мы свяжемся с вами.";
+st.style.color="var(--ok)";st.hidden=false;
+setTimeout(function(){$("dlg").close();st.hidden=true},2500)
+},function(){
+st.textContent="Не удалось отправить заявку. Позвоните нам по телефону в шапке сайта.";
+st.style.color="var(--accent)";st.hidden=false
+}).then(function(){btn.disabled=false;btn.textContent="Отправить"})});
+["q","stock","sort","fp","pmin","pmax","favOnly"].forEach(function(i){$(i).addEventListener("input",render)});
+(function(){var s=[];P.forEach(function(p){if(s.indexOf(p[2])<0)s.push(p[2])});$("fc").innerHTML='<option value="">Все категории</option>'+s.map(function(x){return '<option value="'+x+'">'+x+'</option>'}).join("")})();
+$("fc").addEventListener("change",function(){sec=$("fc").value||"Все";chips();render()});
+
+chips();render();
+var BR=["Tim","Вальмир","Акватан","Проктор","Италпайп","Флексон","Виртан","Оазис"];
+var plural=function(n){return n+' '+(n%10==1&&n%100!=11?'товар':(n%10>1&&n%10<5&&(n%100<10||n%100>20))?'товара':'товаров')};
+$("brands").innerHTML=BR.map(function(b){var n=P.filter(function(p){return (p[6]||"Tim")==b}).length;return '<button class="bt" data-v="cat" data-brand="'+b+'"><b>'+b+'</b><span>'+plural(n)+'</span></button>'}).join("");
+$("fb").innerHTML='<option value="">Все бренды</option>'+BR.map(function(b){return '<option value="'+b+'">'+b+'</option>'}).join("");
+$("aboutBrands").textContent=BR.join(" · ")+" и другие.";
+var CT=[["Комплектующие",["Фитинги","Запорная арматура","Трубы","Коллектор"]],["Дымоходы",["Сэндвич-дымоходы","Коаксиальные","Атмосферные"]],["Радиаторы отопления",["Стальные панельные","Алюминиевые","Биметаллические"]],["Насосное оборудование",["Циркуляционные насосы","Насосные станции","Скважинные насосы"]],["Отопительные котлы",["Газовые котлы","Электрические котлы"]],["Водонагреватели",["Проточные","Бойлеры косвенного нагрева","Накопительные"]],["Тёплый пол",["Трубы PE-RT","Коллекторные шкафы","Смесительные узлы и насосы","Нагревательные маты","Терморегуляторы"]]];
+$("cats").innerHTML=CT.map(function(c){return '<div class="cat"><b data-v="cat" data-sec="'+c[0]+'">'+c[0]+' →</b><div>'+c[1].join("<br>")+'</div></div>'}).join("");
+/* «Хиты продаж» выбираются по артикулу, поэтому не сбиваются при добавлении и правке товаров */
+function skuIdx(s){for(var i=0;i<P.length;i++)if(P[i][5]==s)return i;return -1}
+$("hits").innerHTML=["02709","83607","41799","36667","86920","83608"].map(skuIdx).filter(function(k){return k>-1}).map(function(k){return cardHTML(k)}).join("");
+var curView="home",pos={},catLast="cat",lastProd=-1,shownProd=-1,nextKeep=null;
+try{history.scrollRestoration="manual"}catch(e){}
+function view(v,keep,id){
+var h=v=="home"?"":v=="cat"?"catalog":v=="prod"?"product-"+id:v=="fav"?"favorites":v;
+nextKeep=!!keep;
+if((location.hash||"").replace("#","")==h)route();else location.hash=h}
+function route(){
+var h=(location.hash||"").replace("#",""),v="home",id=-1,m=h.match(/^product-(\d+)$/);
+if(m&&P[+m[1]]){v="prod";id=+m[1]}else if(h=="catalog")v="cat";else if(h=="about"||h=="contacts")v=h;else if(h=="favorites")v="fav";
+var keep=nextKeep===null?true:nextKeep;nextKeep=null;
+if(v=="prod"&&shownProd!=id)showProd(id);
+show(v,keep)}
+window.addEventListener("hashchange",route);
+function show(v,keep){pos[curView]=window.scrollY;
+["home","cat","prod","about","contacts","fav"].forEach(function(n){$("v-"+n).hidden=v!=n});
+document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("on",t.dataset.v==v||(v=="prod"&&t.dataset.v=="cat"))});
+curView=v;if(v=="cat"||v=="prod")catLast=v;
+if(v=="home")recent();
+if(v=="fav")renderFav();
+window.scrollTo(0,keep?(pos[v]||0):0)}
+document.addEventListener("click",function(e){var t=e.target.closest("[data-v]");if(!t)return;var v=t.dataset.v,keep=false;
+if(v=="cat"){
+if(!t.dataset.brand&&!t.dataset.sec){keep=true;if(t.classList.contains("tab"))v=catLast}
+else{cur=t.dataset.brand||null;sec="Все";if(t.dataset.sec&&P.some(function(p){return p[2]==t.dataset.sec}))sec=t.dataset.sec;$("q").value="";$("fb").value=cur||"";$("fp").value="";$("pmin").value="";$("pmax").value="";$("favOnly").checked=false;head();chips();render();pos.cat=0}}
+view(v,keep,lastProd)});
+function head(){$("bn").textContent=cur||"Все бренды";$("bh").textContent=cur||"Каталог"}
+/* фильтр по бренду */
+$("fb").addEventListener("change",function(){cur=$("fb").value||null;sec="Все";head();chips();render()});
+/* сброс фильтров */
+$("rst").addEventListener("click",function(){cur=null;sec="Все";$("q").value="";$("fb").value="";$("fp").value="";$("stock").checked=true;$("sort").value="pop";$("pmin").value="";$("pmax").value="";$("favOnly").checked=false;head();chips();render()});
+var REV={},curP=0;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function rev(){var a=REV[curP]||[];$("rl").innerHTML=a.length?a.map(function(r){return '<div class="rv"><b>'+esc(r.n)+'</b> <span class="st">'+"★".repeat(r.s)+"☆".repeat(5-r.s)+'</span><div>'+esc(r.t)+'</div></div>'}).join(""):'<div class="small" style="margin-bottom:6px">Пока нет отзывов</div>'}
+function showProd(i){var p=P[i],b=p[6]||"Tim";curP=i;
+$("pp").innerHTML='<div class="crumbs"><span data-v="home" class="lk">Главная</span> / <span data-v="cat" class="lk">Каталог</span> / <span data-v="cat" data-brand="'+b+'" class="lk">'+b+'</span> / '+esc(p[0])+'</div>'+
+'<div class="pg"><div class="ph">'+pic(i)+'</div><div><div class="brand">'+b+' · арт. '+p[5]+'</div><h1 style="font-size:24px">'+esc(p[0])+'</h1>'+(p[4]?'<div class="stock">✓ В наличии</div>':'<div class="stock no">Под заказ</div>')+'<div class="price" style="margin:10px 0">'+fmt(p[1])+'</div><button class="btn" style="max-width:260px" data-add="'+i+'">Заказать</button><div class="pact"><button class="btn ghost hbtn" data-fav="'+i+'">♥ В избранное</button><button class="btn ghost hbtn" data-cmp="'+i+'">⇄ Сравнить</button></div></div></div>'+
+'<h3 class="ph3">Описание</h3>'+descHTML(i)+
+'<h3 class="ph3">Характеристики</h3><table class="spec"><tr><td>Бренд</td><td>'+b+'</td></tr><tr><td>Артикул</td><td>'+p[5]+'</td></tr><tr><td>Раздел</td><td>'+p[2]+'</td></tr>'+specExtra(i)+(p[7]?'<tr><td>Мощность</td><td>'+kw(p[7])+'</td></tr>':'')+'<tr><td>Наличие</td><td>'+(p[4]?'В наличии':'Под заказ')+'</td></tr></table>'+
+'<h3 class="ph3">Отзывы</h3><div id="rl"></div><div class="rf"><input id="rn" placeholder="Ваше имя"><select id="rs"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select><textarea id="rt" placeholder="Ваш отзыв" rows="3"></textarea><button class="btn" id="rb" style="max-width:200px">Отправить отзыв</button></div>'+relHTML(i);
+rev();shownProd=i;lastProd=i;recAdd(i);syncMarks()}
+function openP(i){view("prod",false,i)}
+document.addEventListener("click",function(e){var x=e.target;
+if(x.id=="rb"){var t=$("rt").value.trim();if(!t)return;(REV[curP]=REV[curP]||[]).push({n:$("rn").value.trim()||"Гость",t:t,s:+$("rs").value});$("rt").value="";rev();return}
+var c=x.closest("[data-p]");if(c&&!x.closest("button"))openP(+c.dataset.p)});
+
+/* ===== Калькулятор площади ===== */
+var STD=[9,12,18,24,32,40],calcRange="10-24";
+function calc(){
+var a=parseFloat($("ca").value),h=parseFloat($("ch").value),k=parseFloat($("cr").value),r=$("cres");
+r.hidden=false;
+if(!(a>=10)){r.innerHTML="Введите площадь дома — не меньше 10 м².";return}
+var hs=parseFloat($("ci").value),dw=$("cw").checked?1.25:1;var base=a/10*(h/2.7)*k*hs*dw,need=base*1.2;
+var f1=function(n){return (Math.round(n*10)/10).toLocaleString("ru-RU")};
+var rec=null;for(var i=0;i<STD.length;i++){if(STD[i]>=need){rec=STD[i];break}}
+var out='Расчётная мощность: <b>'+f1(base)+' кВт</b><br>С запасом 20%: <b>'+f1(need)+' кВт</b><br>';
+if(rec){calcRange=rec<=10?"2-10":rec<=24?"10-24":"24-1000";out+='Рекомендуем котёл от <b>'+rec+' кВт</b>.<div class="row2"><button class="btn" type="button" id="cshow">Показать подходящие котлы</button></div>'}
+else{calcRange="24-1000";out+='Нужна мощность более 40 кВт — потребуется каскад котлов или индивидуальный расчёт. Нажмите «Обратиться за помощью».<div class="row2"><button class="btn" type="button" id="cshow">Показать мощные котлы</button></div>'}
+r.innerHTML=out}
+$("cgo").addEventListener("click",function(){if(calcM=="floor")calcFloor();else calc()});
+$("ca").addEventListener("keydown",function(e){if(e.key=="Enter"){e.preventDefault();calc()}});
+document.addEventListener("click",function(e){var x=e.target;
+if(x.closest("[data-calc]")){$("cres").hidden=true;$("dcalc").showModal();return}
+if(x.id=="cshow"){cur=null;sec="Отопительные котлы";$("q").value="";$("fb").value="";$("fp").value=calcRange;$("pmin").value="";$("pmax").value="";$("favOnly").checked=false;$("stock").checked=true;head();chips();render();$("dcalc").close();view("cat");return}
+var cm=x.closest("[data-cm]");if(cm){calcMode(cm.dataset.cm);return}
+if(x.id=="radd"){radAdd();return}
+if(x.id=="fshow"){cur=null;sec="Тёплый пол";$("q").value="";$("fp").value="";$("pmin").value="";$("pmax").value="";$("favOnly").checked=false;$("stock").checked=true;head();chips();render();$("dcalc").close();view("cat");return}
+var rdl=x.closest("[data-rdel]");if(rdl){rooms.splice(+rdl.dataset.rdel,1);renderRooms();return}
+if(x.id=="rshow"){cur=null;sec="Радиаторы отопления";$("q").value="";$("fp").value="";$("pmin").value="";$("pmax").value="";$("favOnly").checked=false;$("stock").checked=true;head();chips();render();$("dcalc").close();view("cat");return}
+var cl=x.closest("[data-close]");if(cl){$(cl.dataset.close).close();return}
+if(x.closest("[data-help]")){$("hfields").hidden=false;$("hok").hidden=true;$("dhelp").showModal()}
+});
+
+/* ===== Радиаторы по комнатам ===== */
+var rooms=[];
+function secw(n){return n%10==1&&n%100!=11?"секция":(n%10>1&&n%10<5&&(n%100<10||n%100>20))?"секции":"секций"}
+function calcMode(m){document.querySelectorAll("[data-cm]").forEach(function(b){b.classList.toggle("on",b.dataset.cm==m)});
+calcM=m;$("cm-boiler").hidden=m!="boiler";$("cm-rad").hidden=m!="rad";$("cm-floor").hidden=m!="floor";$("cgo").hidden=m=="rad";$("cres").hidden=true;if(m=="rad")renderRooms()}
+function radAdd(){var a=parseFloat($("ra").value);
+if(!(a>=3)){renderRooms("Введите площадь комнаты — не меньше 3 м².");return}
+var h=+$("rh").value,w=+$("rw").value,k=+$("rc").value,n=$("rn2").value.trim();
+var W=Math.round(a*100*(h/2.7)*k*w/10)*10;
+rooms.push({n:n||"Комната "+(rooms.length+1),a:a,w:W});
+$("ra").value="";$("rn2").value="";renderRooms()}
+function renderRooms(msg){var h=msg?'<div class="res">'+msg+'</div>':"";
+if(rooms.length){var tot=0,ts=0;
+h+='<div class="res">'+rooms.map(function(r,i){var s=Math.ceil(r.w/190);tot+=r.w;ts+=s;
+return '<div class="rrow"><span>'+esc(r.n)+' · '+r.a.toLocaleString("ru-RU")+' м² — <b>'+r.w.toLocaleString("ru-RU")+' Вт</b>, ≈ '+s+' '+secw(s)+'</span><button type="button" class="cx" data-rdel="'+i+'" title="Убрать">×</button></div>'}).join("")+
+'<div style="margin-top:8px">Итого: <b>'+(tot/1000).toLocaleString("ru-RU")+' кВт</b>, ≈ '+ts+' '+secw(ts)+'</div><div class="small">Секции — алюминиевые 500/80, около 190 Вт на секцию. Для стальных панелей ориентируйтесь на мощность в ваттах.</div></div>'+
+'<div class="row2"><button class="btn" type="button" id="rshow">Показать радиаторы</button></div>'}
+$("rrooms").innerHTML=h}
+
+/* ===== Тёплый пол ===== */
+var calcM="boiler";
+$("ft").addEventListener("change",function(){$("fwater").hidden=this.value=="el"});
+$("fa").addEventListener("keydown",function(e){if(e.key=="Enter"){e.preventDefault();calcFloor()}});
+function calcFloor(){var a=parseFloat($("fa").value),r=$("cres");r.hidden=false;
+if(!(a>=2)){r.innerHTML="Введите площадь укладки — не меньше 2 м².";return}
+var f1=function(n){return (Math.round(n*10)/10).toLocaleString("ru-RU")},out="";
+if($("ft").value=="el"){
+var n8=Math.floor(a/8),rest=a-8*n8,n4=0,n2=0;
+if(rest>=6){n4=1;n2=1}else if(rest>=4)n4=1;else if(rest>=2)n2=1;
+var area=8*n8+4*n4+2*n2,parts=[];
+if(n8)parts.push("8 м² × "+n8);if(n4)parts.push("4 м² × "+n4);if(n2)parts.push("2 м² × "+n2);
+out='<b>Электрический тёплый пол</b> (мат 150 Вт/м²)<br>Маты: '+parts.join(" + ")+'<br>Площадь укладки: <b>'+area+' м²</b>, мощность: <b>'+f1(area*0.15)+' кВт</b><br>Терморегулятор с датчиком пола — 1 шт. на помещение.<div class="small">Маты не кладут под мебель и сантехнику. Если площадь не делится на размеры матов, остаток закрывают плиткой без обогрева.</div>'
+}else{
+var st=parseFloat($("fs").value),d=parseFloat($("fd").value);if(!(d>=0))d=5;
+var L=Math.ceil(a/st+2*d),loops=Math.ceil(L/100),per=Math.round(L/loops);
+var b200=Math.floor(L/200),rem=L-200*b200,b100=0;if(rem>100)b200++;else if(rem>0)b100=1;
+var bp=[];if(b200)bp.push("200 м × "+b200);if(b100)bp.push("100 м × "+b100);
+var rolls=Math.ceil(4*Math.sqrt(a)/25),packs=Math.ceil(L*2.5/50),ins=Math.ceil(a/10);
+out='<b>Водяной тёплый пол</b> на '+f1(a)+' м²<br>Длина трубы 16×2,0: <b>≈ '+L+' м</b>, контуров: <b>'+loops+'</b> (≈ '+per+' м каждый)<br>Тепловая мощность: <b>≈ '+f1(a*0.09)+' кВт</b> (около 90 Вт/м²)<br><div style="margin-top:6px">Что понадобится:</div>'+
+'• Труба PE-RT: бухты '+bp.join(" + ")+'<br>• Коллектор на '+loops+' '+(loops==1?'выход':loops<5?'выхода':'выходов')+' и коллекторный шкаф — 1 шт.<br>• Смесительный узел с насосом — 1 шт.<br>• Терморегулятор — 1 шт., сервоприводы — '+loops+' шт.<br>• Демпферная лента: '+rolls+' рул. по 25 м<br>• Скобы 16 мм: '+packs+' уп. по 50 шт.<br>• Теплоизоляция: '+ins+' уп. по 10 м²<div class="small">Расчёт ориентировочный: контур до 100 м, запас на подводку до коллектора учтён.</div>'}
+out+='<div class="row2"><button class="btn" type="button" id="fshow">Показать товары для тёплого пола</button></div>';
+r.innerHTML=out}
+
+/* ===== Закрытие окон по клику вне окна ===== */
+document.querySelectorAll("dialog").forEach(function(d){d.addEventListener("click",function(e){
+if(e.target!==d)return;var r=d.getBoundingClientRect();
+if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()})});
+
+/* ===== Обратиться за помощью ===== */
+$("hf").addEventListener("submit",function(e){
+e.preventDefault();
+var btn=$("hf").querySelector("button[type=submit]"),er=$("herr");
+var text="❓ Вопрос с сайта ТеплоГрад\nEmail: "+$("he").value+"\nВопрос: "+$("hq").value;
+btn.disabled=true;btn.textContent="Отправка…";er.hidden=true;
+tgSend(text).then(function(v){
+$("hfields").hidden=true;$("hok").hidden=false;
+setTimeout(function(){$("dhelp").close();$("hf").reset()},2500)
+},function(){
+er.textContent="Не удалось отправить сообщение. Позвоните нам по телефону в шапке сайта.";er.hidden=false
+}).then(function(){btn.disabled=false;btn.textContent="Отправить"})});
+/* ===== Меню, тема, «Наверх», запуск ===== */
+$("burger").addEventListener("click",function(e){e.stopPropagation();$("nav").classList.toggle("open")});
+document.addEventListener("click",function(){$("nav").classList.remove("open")});
+(function(){var t=ld("tg_theme",null);if(t)document.documentElement.setAttribute("data-theme",t)})();
+$("theme").addEventListener("click",function(){var r=document.documentElement,c=r.getAttribute("data-theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),n=c=="dark"?"light":"dark";r.setAttribute("data-theme",n);sv("tg_theme",n)});
+window.addEventListener("scroll",function(){$("up").classList.toggle("show",window.scrollY>500)});
+$("up").addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+cartSave();cmpBar();favUpdate();syncMarks();route();
+}
+
+/* ===== Запуск: сначала грузим каталог, потом строим страницу ===== */
+fetch("products.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error("products.json "+r.status);return r.json()}).then(function(d){loadData(d);boot()}).catch(function(e){
+if(window.console)console.error(e);
+document.getElementById("v-home").insertAdjacentHTML("afterbegin",'<div class="empty">Не удалось загрузить каталог. Обновите страницу или откройте сайт по ссылке, а не как файл на компьютере.</div>')});
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+# ВАЖНО: замените ВАШ_ЛОГИН_GITHUB на ваш логин на GitHub.
+# Если репозиторий называется не "teplograd", поменяйте и это.
+backend:
+  name: github
+  repo: ВАШ_ЛОГИН_GITHUB/teplograd
+  branch: main
+
+locale: ru
+site_url: https://teplograd.netlify.app
+display_url: https://teplograd.netlify.app
+
+# Куда загружаются картинки и как они подключаются на сайте
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: catalog
+    label: Каталог
+    files:
+      - name: products
+        label: Товары
+        file: products.json
+        fields:
+          - label: Товары
+            name: products
+            widget: list
+            label_singular: товар
+            collapsed: true
+            minimize_collapsed: true
+            summary: "{{fields.name}} — {{fields.price}} ₽"
+            fields:
+              - { label: Название, name: name, widget: string }
+              - { label: "Цена, ₽", name: price, widget: number, value_type: int, min: 0 }
+              - { label: В наличии, name: inStock, widget: boolean, default: true }
+              - { label: Артикул, name: sku, widget: string, hint: "Должен быть уникальным. Например: 83607" }
+              - label: Бренд
+                name: brand
+                widget: select
+                options: [Tim, Вальмир, Акватан, Проктор, Италпайп, Флексон, Виртан, Оазис]
+              - label: Раздел
+                name: section
+                widget: select
+                options:
+                  - Насосное оборудование
+                  - Обжимные фитинги
+                  - Пресс-фитинги
+                  - Аксиальные фитинги
+                  - Запорная арматура
+                  - Коллектор
+                  - Комплектующие
+                  - Радиаторы отопления
+                  - Дымоходы
+                  - Отопительные котлы
+                  - Водонагреватели
+                  - Тёплый пол
+              - { label: "Мощность, кВт", name: power, widget: number, value_type: float, min: 0, required: false, hint: "Только для котлов, радиаторов, водонагревателей. Для остальных оставьте пустым." }
+              - { label: Фото товара, name: image, widget: image, required: false, hint: "Если фото не загружено, на сайте будет значок." }
+              - { label: Описание, name: description, widget: text, required: false, hint: "Если оставить пустым, на сайте будет автоматическое описание. Новый абзац — с новой строки." }
+              - label: Характеристики
+                name: specs
+                widget: list
+                required: false
+                label_singular: характеристику
+                hint: "Если список пуст, на сайте будут автоматические характеристики."
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Значение, name: value, widget: string }
+              - label: Значок вместо фото
+                name: icon
+                widget: select
+                required: false
+                options:
+                  - { label: Фитинг, value: fit }
+                  - { label: Насос, value: pump }
+                  - { label: Кран / клапан, value: valve }
+                  - { label: Коллектор, value: coll }
+                  - { label: Котёл / водонагреватель, value: boil }
+                  - { label: Радиатор, value: rad }
+                  - { label: Труба / подводка / дымоход, value: pipe }
