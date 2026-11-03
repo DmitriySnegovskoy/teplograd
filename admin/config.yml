@@ -2,7 +2,7 @@
 # Если репозиторий называется не "teplograd", поменяйте и это.
 backend:
   name: github
-  repo: ВАШ_ЛОГИН_GITHUB/teplograd
+  repo: DmitriySnegovskoy/teplograd
   branch: main
 
 locale: ru
