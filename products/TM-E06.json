@@ -1,0 +1,11 @@
+{
+  "name": "Электрический котёл 6 кВт",
+  "price": 18900,
+  "section": "Отопительные котлы",
+  "icon": "boil",
+  "inStock": true,
+  "sku": "TM-E06",
+  "brand": "Tim",
+  "power": 6,
+  "order": 310
+}

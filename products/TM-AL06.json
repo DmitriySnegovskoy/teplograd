@@ -1,0 +1,11 @@
+{
+  "name": "Радиатор алюминиевый 500/80, 6 секций",
+  "price": 3600,
+  "section": "Радиаторы отопления",
+  "icon": "rad",
+  "inStock": true,
+  "sku": "TM-AL06",
+  "brand": "Tim",
+  "power": 1.1,
+  "order": 320
+}

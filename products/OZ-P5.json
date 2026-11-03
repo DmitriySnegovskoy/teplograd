@@ -1,0 +1,11 @@
+{
+  "name": "Проточный водонагреватель 5 кВт",
+  "price": 3800,
+  "section": "Водонагреватели",
+  "icon": "boil",
+  "inStock": true,
+  "sku": "OZ-P5",
+  "brand": "Оазис",
+  "power": 5,
+  "order": 650
+}

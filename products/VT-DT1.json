@@ -1,0 +1,10 @@
+{
+  "name": "Датчик температуры пола",
+  "price": 480,
+  "section": "Тёплый пол",
+  "icon": "valve",
+  "inStock": true,
+  "sku": "VT-DT1",
+  "brand": "Виртан",
+  "order": 800
+}

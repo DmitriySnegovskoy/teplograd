@@ -1,0 +1,10 @@
+{
+  "name": "Манометр 0–10 бар",
+  "price": 320,
+  "section": "Комплектующие",
+  "icon": "valve",
+  "inStock": true,
+  "sku": "VT-M10",
+  "brand": "Виртан",
+  "order": 600
+}

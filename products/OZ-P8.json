@@ -1,0 +1,11 @@
+{
+  "name": "Проточный водонагреватель 8 кВт",
+  "price": 5100,
+  "section": "Водонагреватели",
+  "icon": "boil",
+  "inStock": true,
+  "sku": "OZ-P8",
+  "brand": "Оазис",
+  "power": 8,
+  "order": 660
+}

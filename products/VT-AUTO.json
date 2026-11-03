@@ -1,0 +1,10 @@
+{
+  "name": "Автоматика для насосной станции VT-AUTO",
+  "price": 3900,
+  "section": "Насосное оборудование",
+  "icon": "pump",
+  "inStock": true,
+  "sku": "VT-AUTO",
+  "brand": "Виртан",
+  "order": 620
+}
