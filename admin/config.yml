@@ -2,7 +2,7 @@
 # Если репозиторий называется не "teplograd", поменяйте и это.
 backend:
   name: github
-  repo: DmitriySnegovskoy/teplograd
+  repo: ВАШ_ЛОГИН_GITHUB/teplograd
   branch: main
 
 locale: ru
@@ -14,78 +14,200 @@ media_folder: "img"
 public_folder: "/img"
 
 collections:
-  - name: catalog
-    label: Каталог
-    files:
-      - name: products
-        label: Товары
-        file: products.json
+  # ---------------- ТОВАРЫ: один файл на товар, есть поиск, сортировка и фильтры ----------------
+  - name: products
+    label: Товары
+    label_singular: товар
+    folder: products
+    create: true
+    extension: json
+    format: json
+    slug: "{{sku}}"
+    identifier_field: name
+    summary: "{{name}} — {{price}} ₽ · {{brand}}"
+    sortable_fields: ["name", "price", "brand", "section", "order"]
+    view_filters:
+      - { label: В наличии, field: inStock, pattern: true }
+      - { label: Под заказ, field: inStock, pattern: false }
+    view_groups:
+      - { label: По бренду, field: brand }
+      - { label: По разделу, field: section }
+    editor:
+      preview: false
+    fields:
+      - { label: Название, name: name, widget: string }
+      - { label: "Цена, ₽", name: price, widget: number, value_type: int, min: 0 }
+      - { label: В наличии, name: inStock, widget: boolean, default: true }
+      - { label: Артикул, name: sku, widget: string, hint: "Должен быть уникальным. Например: 83607" }
+      - label: Бренд
+        name: brand
+        widget: relation
+        collection: settings
+        file: site
+        search_fields: ["brands.*.name"]
+        value_field: "brands.*.name"
+        display_fields: ["brands.*.name"]
+        hint: "Список брендов редактируется в «Страницы и настройки»."
+      - label: Раздел
+        name: section
+        widget: relation
+        collection: settings
+        file: site
+        search_fields: ["categories.*.name"]
+        value_field: "categories.*.name"
+        display_fields: ["categories.*.name"]
+        hint: "Список разделов редактируется в «Страницы и настройки»."
+      - { label: "Мощность, кВт", name: power, widget: number, value_type: float, min: 0, required: false, hint: "Только для котлов, радиаторов, водонагревателей. Для остальных оставьте пустым." }
+      - { label: Фото товара, name: image, widget: image, required: false, hint: "Если фото не загружено, на сайте будет значок." }
+      - { label: Описание, name: description, widget: text, required: false, hint: "Если оставить пустым, на сайте будет автоматическое описание. Новый абзац — с новой строки." }
+      - label: Характеристики
+        name: specs
+        widget: list
+        required: false
+        label_singular: характеристику
+        hint: "Если список пуст, на сайте будут автоматические характеристики."
         fields:
-          - label: Товары
-            name: products
-            widget: list
-            label_singular: товар
-            collapsed: true
-            minimize_collapsed: true
-            summary: "{{fields.name}} — {{fields.price}} ₽"
-            fields:
-              - { label: Название, name: name, widget: string }
-              - { label: "Цена, ₽", name: price, widget: number, value_type: int, min: 0 }
-              - { label: В наличии, name: inStock, widget: boolean, default: true }
-              - { label: Артикул, name: sku, widget: string, hint: "Должен быть уникальным. Например: 83607" }
-              - label: Бренд
-                name: brand
-                widget: relation
-                collection: settings
-                file: site
-                search_fields: ["brands.*.name"]
-                value_field: "brands.*.name"
-                display_fields: ["brands.*.name"]
-                hint: "Список брендов редактируется в «Страницы и настройки»."
-              - label: Раздел
-                name: section
-                widget: relation
-                collection: settings
-                file: site
-                search_fields: ["categories.*.name"]
-                value_field: "categories.*.name"
-                display_fields: ["categories.*.name"]
-                hint: "Список разделов редактируется в «Страницы и настройки»."
-              - { label: "Мощность, кВт", name: power, widget: number, value_type: float, min: 0, required: false, hint: "Только для котлов, радиаторов, водонагревателей. Для остальных оставьте пустым." }
-              - { label: Фото товара, name: image, widget: image, required: false, hint: "Если фото не загружено, на сайте будет значок." }
-              - { label: Описание, name: description, widget: text, required: false, hint: "Если оставить пустым, на сайте будет автоматическое описание. Новый абзац — с новой строки." }
-              - label: Характеристики
-                name: specs
-                widget: list
-                required: false
-                label_singular: характеристику
-                hint: "Если список пуст, на сайте будут автоматические характеристики."
-                fields:
-                  - { label: Название, name: name, widget: string }
-                  - { label: Значение, name: value, widget: string }
-              - label: Значок вместо фото
-                name: icon
-                widget: select
-                required: false
-                options:
-                  - { label: Фитинг, value: fit }
-                  - { label: Насос, value: pump }
-                  - { label: Кран / клапан, value: valve }
-                  - { label: Коллектор, value: coll }
-                  - { label: Котёл / водонагреватель, value: boil }
-                  - { label: Радиатор, value: rad }
-                  - { label: Труба / подводка / дымоход, value: pipe }
+          - { label: Название, name: name, widget: string }
+          - { label: Значение, name: value, widget: string }
+      - label: Значок вместо фото
+        name: icon
+        widget: select
+        required: false
+        options:
+          - { label: Фитинг, value: fit }
+          - { label: Насос, value: pump }
+          - { label: Кран / клапан, value: valve }
+          - { label: Коллектор, value: coll }
+          - { label: Котёл / водонагреватель, value: boil }
+          - { label: Радиатор, value: rad }
+          - { label: Труба / подводка / дымоход, value: pipe }
+      - { label: "Порядок в каталоге", name: order, widget: number, value_type: int, required: false, default: 1000, hint: "Чем меньше число, тем выше товар в списке «Сначала популярные». У новых товаров стоит 1000, то есть в конце." }
 
+  # ---------------- СТРАНИЦЫ И НАСТРОЙКИ САЙТА ----------------
   - name: settings
     label: Страницы и настройки
+    editor:
+      preview: false
     files:
       - name: site
-        label: Бренды, разделы, «О компании», «Контакты»
+        label: Оформление, главная, бренды, разделы, страницы
         file: site.json
         fields:
+          - label: Оформление сайта
+            name: theme
+            widget: object
+            collapsed: true
+            fields:
+              - label: Цветовая схема
+                name: preset
+                widget: select
+                default: blue
+                options:
+                  - { label: Синяя, value: blue }
+                  - { label: Зелёная, value: green }
+                  - { label: Красная, value: red }
+                  - { label: Оранжевая, value: orange }
+                  - { label: Графитовая, value: graphite }
+              - { label: "Свой основной цвет (светлая тема)", name: accent, widget: color, required: false, hint: "Необязательно. Если выбран, заменяет цвет схемы. Цвет текста на кнопках подберётся сам." }
+              - { label: "Свой основной цвет (тёмная тема)", name: accentDark, widget: color, required: false, hint: "Необязательно. Для тёмной темы лучше брать более светлый оттенок." }
+              - label: Шрифт
+                name: font
+                widget: select
+                default: system
+                options:
+                  - { label: Стандартный, value: system }
+                  - { label: С засечками, value: serif }
+                  - { label: Округлый, value: rounded }
+              - label: Скругление углов
+                name: radius
+                widget: select
+                default: medium
+                options:
+                  - { label: Острые, value: sharp }
+                  - { label: Средние, value: medium }
+                  - { label: Круглые, value: round }
+          - label: Название сайта и шапка
+            name: shop
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Название магазина, name: name, widget: string }
+              - { label: "Слоган для вкладки браузера", name: slogan, widget: string, required: false, hint: "Например: оборудование для отопления. Показывается во вкладке: «Название — слоган»." }
+              - { label: "Короткое описание под названием", name: tagline, widget: string, required: false }
+          - label: Главный экран
+            name: hero
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Строка над заголовком, name: eyebrow, widget: string, required: false }
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст под заголовком, name: text, widget: string, required: false }
+              - { label: Первая кнопка (ведёт в каталог), name: button1, widget: string }
+              - { label: Вторая кнопка (открывает заявку), name: button2, widget: string }
+              - label: Пункты со значками
+                name: bullets
+                widget: list
+                required: false
+                label_singular: пункт
+                field: { label: Пункт, name: text, widget: string }
+              - { label: Главное фото, name: image, widget: image, required: false, hint: "Если не загружать новое, остаётся прежнее." }
+              - { label: Надпись на фото, name: bannerTitle, widget: string, required: false }
+          - label: Какие блоки показывать на главной
+            name: blocks
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Калькулятор площади, name: calculator, widget: boolean, default: true }
+              - { label: Популярные бренды, name: brands, widget: boolean, default: true }
+              - { label: Категории, name: categories, widget: boolean, default: true }
+              - { label: Хиты продаж, name: hits, widget: boolean, default: true }
+              - { label: Монтаж под ключ, name: turnkey, widget: boolean, default: true }
+              - { label: Консультация менеджера, name: consult, widget: boolean, default: true }
+          - label: Хиты продаж (какие товары показывать)
+            name: hits
+            widget: list
+            collapsed: true
+            required: false
+            label_singular: товар
+            hint: "Выберите товары из каталога. Если список пуст, блок «Хиты продаж» скрывается."
+            field:
+              label: Товар
+              name: sku
+              widget: relation
+              collection: products
+              search_fields: ["name", "sku"]
+              value_field: "sku"
+              display_fields: ["name", "sku"]
+          - label: Блок «Монтаж под ключ»
+            name: turnkey
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Метка, name: tag, widget: string, required: false }
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: text, widget: string, required: false }
+              - { label: Кнопка, name: button, widget: string }
+              - label: Цифры
+                name: stats
+                widget: list
+                required: false
+                label_singular: цифру
+                summary: "{{fields.value}} — {{fields.label}}"
+                fields:
+                  - { label: Число, name: value, widget: string }
+                  - { label: Подпись, name: label, widget: string }
+          - label: Блок «Консультация менеджера»
+            name: consult
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: text, widget: string, required: false }
+              - { label: Кнопка, name: button, widget: string }
           - label: Бренды
             name: brands
             widget: list
+            collapsed: true
             label_singular: бренд
             summary: "{{fields.name}}"
             hint: "Если переименовать бренд, у его товаров тоже нужно поменять бренд."
@@ -94,6 +216,7 @@ collections:
           - label: Разделы каталога
             name: categories
             widget: list
+            collapsed: true
             label_singular: раздел
             summary: "{{fields.name}}"
             hint: "Если переименовать раздел, у его товаров тоже нужно поменять раздел."
@@ -137,3 +260,10 @@ collections:
               - { label: Пояснение к адресу, name: addressNote, widget: string, required: false }
               - { label: Часы работы (в шапке и на странице), name: hours, widget: string }
               - { label: Пояснение к часам работы, name: hoursNote, widget: string, required: false }
+          - label: Подвал сайта
+            name: footer
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Первая строка, name: text, widget: string }
+              - { label: "Вторая строка (можно очистить)", name: note, widget: string, required: false, hint: "Например, чтобы убрать пометку «Демо-версия», сотрите текст." }
