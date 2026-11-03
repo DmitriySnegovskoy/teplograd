@@ -2,7 +2,7 @@
 # Если репозиторий называется не "teplograd", поменяйте и это.
 backend:
   name: github
-  repo: DmitriySnegovskoy/teplograd
+  repo: ВАШ_ЛОГИН_GITHUB/teplograd
   branch: main
 
 locale: ru
@@ -35,24 +35,22 @@ collections:
               - { label: Артикул, name: sku, widget: string, hint: "Должен быть уникальным. Например: 83607" }
               - label: Бренд
                 name: brand
-                widget: select
-                options: [Tim, Вальмир, Акватан, Проктор, Италпайп, Флексон, Виртан, Оазис]
+                widget: relation
+                collection: settings
+                file: site
+                search_fields: ["brands.*.name"]
+                value_field: "brands.*.name"
+                display_fields: ["brands.*.name"]
+                hint: "Список брендов редактируется в «Страницы и настройки»."
               - label: Раздел
                 name: section
-                widget: select
-                options:
-                  - Насосное оборудование
-                  - Обжимные фитинги
-                  - Пресс-фитинги
-                  - Аксиальные фитинги
-                  - Запорная арматура
-                  - Коллектор
-                  - Комплектующие
-                  - Радиаторы отопления
-                  - Дымоходы
-                  - Отопительные котлы
-                  - Водонагреватели
-                  - Тёплый пол
+                widget: relation
+                collection: settings
+                file: site
+                search_fields: ["categories.*.name"]
+                value_field: "categories.*.name"
+                display_fields: ["categories.*.name"]
+                hint: "Список разделов редактируется в «Страницы и настройки»."
               - { label: "Мощность, кВт", name: power, widget: number, value_type: float, min: 0, required: false, hint: "Только для котлов, радиаторов, водонагревателей. Для остальных оставьте пустым." }
               - { label: Фото товара, name: image, widget: image, required: false, hint: "Если фото не загружено, на сайте будет значок." }
               - { label: Описание, name: description, widget: text, required: false, hint: "Если оставить пустым, на сайте будет автоматическое описание. Новый абзац — с новой строки." }
@@ -77,3 +75,65 @@ collections:
                   - { label: Котёл / водонагреватель, value: boil }
                   - { label: Радиатор, value: rad }
                   - { label: Труба / подводка / дымоход, value: pipe }
+
+  - name: settings
+    label: Страницы и настройки
+    files:
+      - name: site
+        label: Бренды, разделы, «О компании», «Контакты»
+        file: site.json
+        fields:
+          - label: Бренды
+            name: brands
+            widget: list
+            label_singular: бренд
+            summary: "{{fields.name}}"
+            hint: "Если переименовать бренд, у его товаров тоже нужно поменять бренд."
+            fields:
+              - { label: Название бренда, name: name, widget: string }
+          - label: Разделы каталога
+            name: categories
+            widget: list
+            label_singular: раздел
+            summary: "{{fields.name}}"
+            hint: "Если переименовать раздел, у его товаров тоже нужно поменять раздел."
+            fields:
+              - { label: Название раздела, name: name, widget: string }
+              - { label: Показывать плиткой на главной, name: onHome, widget: boolean, default: true }
+              - { label: Подпункты на плитке (каждый с новой строки), name: items, widget: text, required: false }
+          - label: Страница «О компании»
+            name: about
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст (каждый абзац с новой строки), name: text, widget: text }
+              - label: Цифры
+                name: stats
+                widget: list
+                label_singular: цифру
+                summary: "{{fields.value}} — {{fields.label}}"
+                fields:
+                  - { label: Число, name: value, widget: string }
+                  - { label: Подпись, name: label, widget: string }
+              - label: Преимущества
+                name: features
+                widget: list
+                label_singular: преимущество
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Заголовок, name: title, widget: string }
+                  - { label: Текст, name: text, widget: text }
+          - label: Страница «Контакты»
+            name: contacts
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Телефон (в шапке и на странице), name: phone, widget: string }
+              - { label: Пояснение к телефону, name: phoneNote, widget: string, required: false }
+              - { label: Электронная почта, name: email, widget: string }
+              - { label: Пояснение к почте, name: emailNote, widget: string, required: false }
+              - { label: Адрес, name: address, widget: string }
+              - { label: Пояснение к адресу, name: addressNote, widget: string, required: false }
+              - { label: Часы работы (в шапке и на странице), name: hours, widget: string }
+              - { label: Пояснение к часам работы, name: hoursNote, widget: string, required: false }

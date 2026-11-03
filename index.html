@@ -185,7 +185,7 @@ nav{align-items:flex-start}
 <div class="top">
 <div class="brandbox" data-v="home" style="cursor:pointer" title="На главную"><div class="logo"><i></i>ТеплоГрад</div><div class="tagline">Котлы, радиаторы, насосы и монтаж под ключ</div></div><button class="burger" id="burger" aria-label="Меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 <nav id="nav"><button class="tab on" data-v="home">Главная</button><button class="tab" data-v="cat">Каталог</button><button class="tab" data-v="about">О компании</button><button class="tab" data-v="contacts">Контакты</button><div class="navstack"><button class="tab" data-calc="1">Калькулятор площади</button><button class="tab" data-v="fav"><span style="color:var(--accent)">♥</span> Избранное (<span id="favHead">0</span>)</button></div></nav>
-<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><div><div class="phone">+7 (900) 000-00-00</div><div class="small">Пн–Пт 9:00–18:00</div></div><button class="btn ghost hbtn" data-help="1">Обратиться за помощью</button><button class="btn ghost hbtn" id="theme" aria-label="Сменить тему" title="Светлая / тёмная тема">◐</button></div>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><div><div class="phone" id="hPhone">+7 (900) 000-00-00</div><div class="small" id="hHours">Пн–Пт 9:00–18:00</div></div><button class="btn ghost hbtn" data-help="1">Обратиться за помощью</button><button class="btn ghost hbtn" id="theme" aria-label="Сменить тему" title="Светлая / тёмная тема">◐</button></div>
 </div></div></header>
 
 <main class="wrap" id="v-home">
@@ -233,12 +233,12 @@ nav{align-items:flex-start}
 
 <main class="wrap page" id="v-about" hidden>
 <div class="crumbs"><span data-v="home" class="lk">Главная</span> / О компании</div>
-<h1>О компании ТеплоГрад</h1>
-<p>ТеплоГрад поставляет и монтирует отопительное оборудование для частных домов, коттеджей и небольших предприятий. Мы подбираем котлы, радиаторы, насосы, дымоходы и комплектующие, а при необходимости берём на себя весь монтаж — от проекта до запуска котельной.</p>
-<p>Мы работаем напрямую с производителями, поэтому гарантия и сертификаты оформляются без посредников, а цены остаются честными. Ходовые позиции всегда есть на складе в вашем городе.</p>
-<div class="stats"><div><b>24</b><span>бренда</span></div><div><b>300+</b><span>котельных под ключ</span></div><div><b>до 5 лет</b><span>гарантия на оборудование</span></div><div><b>2 года</b><span>гарантия на монтаж</span></div></div>
+<h1 id="abTitle">О компании ТеплоГрад</h1>
+<div id="abText"><p>ТеплоГрад поставляет и монтирует отопительное оборудование для частных домов, коттеджей и небольших предприятий. Мы подбираем котлы, радиаторы, насосы, дымоходы и комплектующие, а при необходимости берём на себя весь монтаж — от проекта до запуска котельной.</p>
+<p>Мы работаем напрямую с производителями, поэтому гарантия и сертификаты оформляются без посредников, а цены остаются честными. Ходовые позиции всегда есть на складе в вашем городе.</p></div>
+<div class="stats" id="abStats"><div><b>24</b><span>бренда</span></div><div><b>300+</b><span>котельных под ключ</span></div><div><b>до 5 лет</b><span>гарантия на оборудование</span></div><div><b>2 года</b><span>гарантия на монтаж</span></div></div>
 <div class="sec"><h3>Почему выбирают нас</h3></div>
-<div class="cats feat">
+<div class="cats feat" id="abFeat">
 <div class="cat"><b>Официальный дилер</b><div>Прямые поставки от производителей, документы и гарантия без посредников.</div></div>
 <div class="cat"><b>Склад в вашем городе</b><div>Тысячи товаров в наличии, быстрая доставка в ближайшее время.</div></div>
 <div class="cat"><b>Инженерный подбор</b><div>Рассчитываем мощность по площади дома и схеме разводки.</div></div>
@@ -253,7 +253,7 @@ nav{align-items:flex-start}
 <main class="wrap page" id="v-contacts" hidden>
 <div class="crumbs"><span data-v="home" class="lk">Главная</span> / Контакты</div>
 <h1>Контакты</h1>
-<div class="cats feat" style="margin-top:14px">
+<div class="cats feat" id="ctBlocks" style="margin-top:14px">
 <div class="cat"><b>Телефон</b><div>+7 (900) 000-00-00. Звоните нам в рабочее время, ответим на любые вопросы по подбору оборудования.</div></div>
 <div class="cat"><b>Электронная почта</b><div>info@teplograd.example. Ответим на ваше письмо в течение рабочего дня.</div></div>
 <div class="cat"><b>Адрес склада и офиса</b><div>г. Ваш город, ул. Складская, 12. Самовывоз со склада возможен по предварительной заявке.</div></div>
@@ -351,7 +351,7 @@ coll:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3
    Внутри сайта товар хранится как массив:
    [название, цена, раздел, значок, в наличии (1/0), артикул, бренд, мощность кВт]
    X — дополнительные данные: своё описание, свои характеристики, своя картинка. */
-var P=[],X=[];
+var P=[],X=[],S={};  /* S — настройки сайта из site.json: бренды, разделы, страницы */
 var SECICON={"Насосное оборудование":"pump","Запорная арматура":"valve","Коллектор":"coll","Отопительные котлы":"boil","Водонагреватели":"boil","Радиаторы отопления":"rad","Дымоходы":"pipe"};
 function loadData(d){
 (d.products||[]).forEach(function(p){
@@ -579,12 +579,28 @@ st.style.color="var(--accent)";st.hidden=false
 $("fc").addEventListener("change",function(){sec=$("fc").value||"Все";chips();render()});
 
 chips();render();
-var BR=["Tim","Вальмир","Акватан","Проктор","Италпайп","Флексон","Виртан","Оазис"];
+var BR=(S.brands||[]).map(function(b){return b&&b.name}).filter(Boolean);
+if(!BR.length){P.forEach(function(p){var b=p[6]||"Tim";if(BR.indexOf(b)<0)BR.push(b)})}
+/* страницы «О компании» и «Контакты» и шапка берут тексты из site.json (если он загрузился) */
+function applySite(){
+var a=S.about,c=S.contacts;
+if(a){
+if(a.title)$("abTitle").textContent=a.title;
+if(a.text)$("abText").innerHTML=String(a.text).split(/\n+/).filter(function(s){return s.trim()}).map(function(s){return '<p>'+esc(s)+'</p>'}).join("");
+if(a.stats&&a.stats.length)$("abStats").innerHTML=a.stats.map(function(s){return '<div><b>'+esc(s.value||"")+'</b><span>'+esc(s.label||"")+'</span></div>'}).join("");
+if(a.features&&a.features.length)$("abFeat").innerHTML=a.features.map(function(f){return '<div class="cat"><b>'+esc(f.title||"")+'</b><div>'+esc(f.text||"")+'</div></div>'}).join("")}
+if(c){
+if(c.phone)$("hPhone").textContent=c.phone;
+if(c.hours)$("hHours").textContent=c.hours;
+var B=[["Телефон",c.phone,c.phoneNote],["Электронная почта",c.email,c.emailNote],["Адрес склада и офиса",c.address,c.addressNote],["Режим работы",c.hours,c.hoursNote]].filter(function(b){return b[1]});
+if(B.length)$("ctBlocks").innerHTML=B.map(function(b){return '<div class="cat"><b>'+esc(b[0])+'</b><div>'+esc(b[1])+(b[2]?'. '+esc(b[2]):'')+'</div></div>'}).join("")}}
+applySite();
 var plural=function(n){return n+' '+(n%10==1&&n%100!=11?'товар':(n%10>1&&n%10<5&&(n%100<10||n%100>20))?'товара':'товаров')};
 $("brands").innerHTML=BR.map(function(b){var n=P.filter(function(p){return (p[6]||"Tim")==b}).length;return '<button class="bt" data-v="cat" data-brand="'+b+'"><b>'+b+'</b><span>'+plural(n)+'</span></button>'}).join("");
 $("fb").innerHTML='<option value="">Все бренды</option>'+BR.map(function(b){return '<option value="'+b+'">'+b+'</option>'}).join("");
 $("aboutBrands").textContent=BR.join(" · ")+" и другие.";
-var CT=[["Комплектующие",["Фитинги","Запорная арматура","Трубы","Коллектор"]],["Дымоходы",["Сэндвич-дымоходы","Коаксиальные","Атмосферные"]],["Радиаторы отопления",["Стальные панельные","Алюминиевые","Биметаллические"]],["Насосное оборудование",["Циркуляционные насосы","Насосные станции","Скважинные насосы"]],["Отопительные котлы",["Газовые котлы","Электрические котлы"]],["Водонагреватели",["Проточные","Бойлеры косвенного нагрева","Накопительные"]],["Тёплый пол",["Трубы PE-RT","Коллекторные шкафы","Смесительные узлы и насосы","Нагревательные маты","Терморегуляторы"]]];
+var CT=(S.categories&&S.categories.length)?S.categories.filter(function(c){return c&&c.name&&c.onHome!==false}).map(function(c){return [c.name,String(c.items||"").split(/\n+/).filter(function(s){return s.trim()})]}):[];
+if(!CT.length){P.forEach(function(p){if(!CT.some(function(c){return c[0]==p[2]}))CT.push([p[2],[]])})}
 $("cats").innerHTML=CT.map(function(c){return '<div class="cat"><b data-v="cat" data-sec="'+c[0]+'">'+c[0]+' →</b><div>'+c[1].join("<br>")+'</div></div>'}).join("");
 /* «Хиты продаж» выбираются по артикулу, поэтому не сбиваются при добавлении и правке товаров */
 function skuIdx(s){for(var i=0;i<P.length;i++)if(P[i][5]==s)return i;return -1}
@@ -732,7 +748,8 @@ cartSave();cmpBar();favUpdate();syncMarks();route();
 }
 
 /* ===== Запуск: сначала грузим каталог, потом строим страницу ===== */
-fetch("products.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error("products.json "+r.status);return r.json()}).then(function(d){loadData(d);boot()}).catch(function(e){
+function getJSON(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(u+" "+r.status);return r.json()})}
+Promise.all([getJSON("products.json"),getJSON("site.json").catch(function(){return {}})]).then(function(r){loadData(r[0]);S=r[1]||{};boot()}).catch(function(e){
 if(window.console)console.error(e);
 document.getElementById("v-home").insertAdjacentHTML("afterbegin",'<div class="empty">Не удалось загрузить каталог. Обновите страницу или откройте сайт по ссылке, а не как файл на компьютере.</div>')});
 </script>
