@@ -36,7 +36,7 @@ collections:
     editor:
       preview: false
     fields:
-      - { label: Название, name: name, widget: string }
+      - { label: Название, name: name, widget: string, hint: "ВНИМАНИЕ: если название приходит из 1С, оно заменит написанное здесь при следующей выгрузке." }
       - { label: "Цена, ₽ (управляется из 1С)", name: price, widget: hidden, default: 0 }
       - { label: "В наличии (управляется из 1С)", name: inStock, widget: hidden, default: true }
       - { label: Артикул, name: sku, widget: string, hint: "Должен быть уникальным. Например: 83607" }
@@ -60,13 +60,13 @@ collections:
         hint: "Список разделов редактируется в «Страницы и настройки»."
       - { label: "Мощность, кВт", name: power, widget: number, value_type: float, min: 0, required: false, hint: "Только для котлов, радиаторов, водонагревателей. Для остальных оставьте пустым." }
       - { label: Фото товара, name: image, widget: image, required: false, hint: "Если фото не загружено, на сайте будет значок." }
-      - { label: Описание, name: description, widget: text, required: false, hint: "Если оставить пустым, на сайте будет автоматическое описание. Новый абзац — с новой строки." }
+      - { label: Описание, name: description, widget: text, required: false, hint: "ВНИМАНИЕ: если описание приходит из 1С, оно заменит написанное здесь при следующей выгрузке. Новый абзац — пустая строка. Оформление: «- » в начале строки — пункт списка, «1. » — нумерованный список, «## » — подзаголовок, **текст** — жирный, *текст* — курсив, «---» на отдельной строке — разделитель." }
       - label: Характеристики
         name: specs
         widget: list
         required: false
         label_singular: характеристику
-        hint: "Если список пуст, на сайте будут автоматические характеристики."
+        hint: "Если список пуст, на сайте будут автоматические характеристики. ВНИМАНИЕ: если характеристики приходят из 1С, они заменят список при следующей выгрузке."
         fields:
           - { label: Название, name: name, widget: string }
           - { label: Значение, name: value, widget: string }
@@ -74,6 +74,7 @@ collections:
         name: icon
         widget: select
         required: false
+        hint: "ВНИМАНИЕ: если значок приходит из 1С, он заменит выбранный здесь при следующей выгрузке."
         options:
           - { label: Фитинг, value: fit }
           - { label: Насос, value: pump }
