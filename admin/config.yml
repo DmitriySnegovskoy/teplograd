@@ -6,8 +6,8 @@ backend:
   branch: main
 
 locale: ru
-site_url: https://teplograd.netlify.app
-display_url: https://teplograd.netlify.app
+site_url: https://symphonious-kleicha-693033.netlify.app
+display_url: https://symphonious-kleicha-693033.netlify.app
 
 # Куда загружаются картинки и как они подключаются на сайте
 media_folder: "img"
