@@ -141,6 +141,11 @@ dialog input[type=checkbox]{width:auto;margin:0 8px 0 0}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:10px;background:var(--surface)}
 .tg{z-index:2}
 .desc p{line-height:1.6;font-size:15px;max-width:760px;margin:0 0 10px}
+.desc ul,.desc ol{line-height:1.6;font-size:15px;max-width:760px;margin:0 0 10px;padding-left:22px}
+.desc li{margin:0 0 4px}
+.desc h4{font-size:16px;margin:16px 0 8px}
+.desc b{font-weight:700}
+.desc hr{border:0;border-top:1px solid var(--line);margin:14px 0;max-width:760px}
 .banner{position:relative;aspect-ratio:3/2;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
 .banner svg{width:100%;height:100%;display:block}
 .banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
@@ -362,16 +367,25 @@ var sp=(p.specs||[]).filter(function(s){return s&&s.name&&s.value}).map(function
 P.push([String(p.name),Number(p.price)||0,p.section||"Комплектующие",p.icon||SECICON[p.section]||"fit",p.inStock===false?0:1,String(p.sku||""),p.brand||"Tim",Number(p.power)||0]);
 X.push({desc:String(p.description||"").trim(),specs:sp,image:p.image||""})})}
 
-/* ===== Цены и наличие из 1С =====
-   Функция get-stock отдаёт {items:{артикул:{price,inStock}}}. Данные подставляются по артикулу.
-   Товар, которого нет в выгрузке 1С, показывается как «Под заказ». Если выгрузки ещё нет или
-   она недоступна, сайт работает как раньше (цены и наличие из products.json). */
+/* ===== Данные из 1С =====
+   Функция get-stock отдаёт {items:{артикул:{price,inStock,name,description,icon,specs}}}.
+   Данные подставляются по артикулу и перезаписывают то, что заполнено в админке.
+   Поля, которого в выгрузке нет, изменения не касаются. Товар, которого нет в выгрузке 1С,
+   показывается как «Под заказ». Если выгрузки ещё нет или она недоступна, сайт работает
+   как раньше — на данных из products.json. */
+var ICONKEYS="fit pump valve coll boil heater rad pipe tube hose chim mat therm".split(" ");
 function applyStock(st){
 if(!st||!st.items||!Object.keys(st.items).length)return;
 STOCK=st.items;
-P.forEach(function(p){var s=STOCK[p[5]];
-if(s){p[1]=Number(s.price)||0;p[4]=s.inStock?1:0}
-else p[4]=0})}
+P.forEach(function(p,i){var s=STOCK[p[5]];
+if(!s){p[4]=0;return}
+p[1]=Number(s.price)||0;p[4]=s.inStock?1:0;
+if(typeof s.name=="string"&&s.name.trim())p[0]=s.name.trim();
+if(typeof s.icon=="string"&&ICONKEYS.indexOf(s.icon)>-1){p[3]=s.icon;X[i].icon1c=1}
+if(typeof s.description=="string")X[i].desc=s.description.trim();
+if(Array.isArray(s.specs))X[i].specs=s.specs.map(function(x){
+return Array.isArray(x)?[String(x[0]),String(x[1])]:(x&&x.name?[String(x.name),String(x.value)]:null)})
+.filter(function(x){return x&&x[0]&&x[1]})})}
 
 /* ===== Оформление из site.json: цвета, шрифт, скругление, название вкладки ===== */
 var PRESETS={blue:["#2f5d9e","#5b93e0"],green:["#2e7d4f","#5cc08a"],red:["#c0392b","#ef6b5a"],orange:["#d9731a","#f0a050"],graphite:["#3a4453","#9aa7bb"]};
@@ -414,6 +428,7 @@ ICON.chim=S2+'<rect x="19" y="6" width="26" height="52" rx="3" '+F+'/><rect x="2
 ICON.mat=S2+'<rect x="8" y="12" width="48" height="40" rx="4" '+F+'/><path d="M16 20h32v8H16v8h32v8"/></svg>';
 ICON.therm=S2+'<rect x="14" y="8" width="36" height="48" rx="6" '+F+'/><circle cx="32" cy="30" r="10"/><path d="M32 30l5-5M26 47h12"/></svg>';
 function iconKey(i){var p=P[i],s=p[2],k=p[3];
+if(X[i]&&X[i].icon1c)return k; /* значок пришёл из 1С — он главнее подбора по разделу */
 if(s=="Тёплый пол"){var w=p[0].toLowerCase();return /скоба|шина|евроконус/.test(w)?"fit":/труба/.test(w)?"tube":/коллектор/.test(w)?"coll":/насос|смесительный узел/.test(w)?"pump":/терморегулятор|датчик/.test(w)?"therm":/сервопривод/.test(w)?"valve":/скоба|шина|евроконус/.test(w)?"fit":"mat"}if(s=="Дымоходы")return"chim";if(s=="Водонагреватели")return"heater";if(s=="Комплектующие"&&k=="pipe")return /труба/i.test(p[0])?"tube":"hose";return k}
 function imgSrc(i){return (X[i]&&X[i].image)||"img/"+P[i][5]+".jpg"}
 function pic(i){return (ICON[iconKey(i)]||ICON.fit)+'<img src="'+esc(imgSrc(i))+'" alt="" loading="lazy" onerror="this.remove()">'}
@@ -479,8 +494,32 @@ R(/штуцер/,"Штуцер для подключения датчиков д
 R(/фильтр/,"Фильтр грубой очистки: защищает оборудование от песка и ржавчины.","Защита оборудования");
 if(!t){t="Товар из раздела «"+s+"» бренда "+b+".";u=s}
 return{t:t,u:u,ex:ex}}
+/* ===== Описание товара: простой текст со служебными символами =====
+   Так описание приходит и из админки, и из выгрузки 1С:
+     пустая строка — новый абзац, \n — перенос строки внутри абзаца,
+     «- » — пункт списка, «1. » — нумерованный список, «## » — подзаголовок,
+     **жирный**, *курсив*, «---» — разделитель.
+   Текст сначала экранируется, поэтому теги из описания на сайте не выполняются. */
+function inlineMD(s){s=esc(s);
+s=s.replace(/\*\*([^*\n]+)\*\*/g,"<b>$1</b>");
+s=s.replace(/(^|[\s(\[«"])[*_]([^*_\n]+)[*_](?=$|[\s.,;:!?)\]»"])/g,'$1<i>$2</i>');
+return s}
+function descBody(t){
+var out="",para=[],list=null;
+function fp(){if(para.length){out+="<p>"+para.join("<br>")+"</p>";para=[]}}
+function fl(){if(list){out+="</"+list+">";list=null}}
+function ol(tag){if(list!=tag){fl();out+="<"+tag+">";list=tag}}
+String(t).replace(/\r\n?/g,"\n").replace(/\\r\\n|\\n|\\r/g,"\n").split("\n").forEach(function(raw){
+var l=raw.trim(),m;
+if(!l){fp();fl();return}
+if(/^([-–—_*]\s*){3,}$/.test(l)||/^(-{3,}|_{3,}|\*{3,})$/.test(l)){fp();fl();out+="<hr>";return}
+if(m=l.match(/^#{1,6}\s*(.+)$/)){fp();fl();out+="<h4>"+inlineMD(m[1])+"</h4>";return}
+if(m=l.match(/^[-–—•]\s+(.+)$/)||(m=l.match(/^\*\s+(.+)$/))){fp();ol("ul");out+="<li>"+inlineMD(m[1])+"</li>";return}
+if(m=l.match(/^\d{1,3}[.)]\s+(.+)$/)){fp();ol("ol");out+="<li>"+inlineMD(m[1])+"</li>";return}
+fl();para.push(inlineMD(l))});
+fp();fl();return out}
 function descHTML(i){var p=P[i],d=dinfo(i),c=X[i]&&X[i].desc;
-if(c)return '<div class="desc">'+c.split(/\n+/).map(function(s){return '<p>'+esc(s)+'</p>'}).join("")+'</div>';
+if(c)return '<div class="desc">'+descBody(c)+'</div>';
 return '<div class="desc"><p>'+esc(d.t)+'</p><p>Бренд — '+(p[6]||"Tim")+', артикул '+p[5]+'. Доставка со склада в вашем городе, гарантия — по условиям производителя.</p><div class="small">Описание в демо-версии примерное и будет заменено данными поставщика.</div></div>'}
 function specExtra(i){var cs=X[i]&&X[i].specs;
 if(cs&&cs.length)return cs.map(function(x){return '<tr><td>'+esc(x[0])+'</td><td>'+esc(x[1])+'</td></tr>'}).join("");
