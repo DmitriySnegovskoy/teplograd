@@ -281,6 +281,7 @@ nav{align-items:flex-start}
 <h3 style="margin:0 0 8px">Оставить заявку</h3>
 <div id="clist"></div>
 <input placeholder="Ваше имя" required><input placeholder="Телефон" type="tel" required>
+<div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
 <button class="btn" style="margin-top:8px">Отправить</button>
 <div id="fst" class="small" style="margin-top:8px" hidden></div>
 </form></dialog>
@@ -352,7 +353,7 @@ coll:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3
    Внутри сайта товар хранится как массив:
    [название, цена, раздел, значок, в наличии (1/0), артикул, бренд, мощность кВт]
    X — дополнительные данные: своё описание, свои характеристики, своя картинка. */
-var P=[],X=[],S={};  /* S — настройки сайта из site.json: бренды, разделы, страницы */
+var P=[],X=[],S={},STOCK=null;  /* S — настройки сайта из site.json: бренды, разделы, страницы */
 var SECICON={"Насосное оборудование":"pump","Запорная арматура":"valve","Коллектор":"coll","Отопительные котлы":"boil","Водонагреватели":"boil","Радиаторы отопления":"rad","Дымоходы":"pipe"};
 function loadData(d){
 (d.products||[]).forEach(function(p){
@@ -360,6 +361,17 @@ if(!p||!p.name)return;
 var sp=(p.specs||[]).filter(function(s){return s&&s.name&&s.value}).map(function(s){return [String(s.name),String(s.value)]});
 P.push([String(p.name),Number(p.price)||0,p.section||"Комплектующие",p.icon||SECICON[p.section]||"fit",p.inStock===false?0:1,String(p.sku||""),p.brand||"Tim",Number(p.power)||0]);
 X.push({desc:String(p.description||"").trim(),specs:sp,image:p.image||""})})}
+
+/* ===== Цены и наличие из 1С =====
+   Функция get-stock отдаёт {items:{артикул:{price,inStock}}}. Данные подставляются по артикулу.
+   Товар, которого нет в выгрузке 1С, показывается как «Под заказ». Если выгрузки ещё нет или
+   она недоступна, сайт работает как раньше (цены и наличие из products.json). */
+function applyStock(st){
+if(!st||!st.items||!Object.keys(st.items).length)return;
+STOCK=st.items;
+P.forEach(function(p){var s=STOCK[p[5]];
+if(s){p[1]=Number(s.price)||0;p[4]=s.inStock?1:0}
+else p[4]=0})}
 
 /* ===== Оформление из site.json: цвета, шрифт, скругление, название вкладки ===== */
 var PRESETS={blue:["#2f5d9e","#5b93e0"],green:["#2e7d4f","#5cc08a"],red:["#c0392b","#ef6b5a"],orange:["#d9731a","#f0a050"],graphite:["#3a4453","#9aa7bb"]};
@@ -579,20 +591,28 @@ if(t.closest("[data-cmpopen]"))openCmp();
 if(t.closest("[data-cmpclear]")){cmp=[];cmpSave();if($("dcmp").open)$("dcmp").close()}
 a=t.closest("[data-cmprm]");if(a){var k=cmp.indexOf(+a.dataset.cmprm);if(k>-1)cmp.splice(k,1);cmpSave();openCmp()}
 });
+/* Заявка с товарами уходит на функцию send-order (очередь для 1С + Telegram). */
+function orderSend(o){
+return fetch("/.netlify/functions/send-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)}).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok){var er=new Error(d&&d.error?d.error:"send");er.show=(r.status==400);throw er}return d})})}
 $("f").addEventListener("submit",function(e){
 e.preventDefault();
 var inp=$("f").querySelectorAll("input"),btn=$("f").querySelector("button.btn"),st=$("fst");
 var lines=["🛒 Новая заявка с сайта ТеплоГрад","Имя: "+inp[0].value,"Телефон: "+inp[1].value];
 if(cart.length){var tot=0;lines.push("Товары:");cart.forEach(function(c){var p=P[c.i];tot+=p[1]*c.q;lines.push("• "+p[0]+" (арт. "+p[5]+") × "+c.q+" = "+fmt(p[1]*c.q))});lines.push("Итого: "+fmt(tot))}
 else lines.push("Запрос: консультация по подбору оборудования");
+var items=cart.map(function(c){var p=P[c.i];return {sku:p[5],quantity:c.q,name:p[0]}});
+/* Через очередь 1С идёт только заявка с товарами, и только если данные из 1С загружены и у всех товаров есть артикул.
+   Пустая корзина (консультация) и любые другие случаи уходят в Telegram, как раньше. */
+var viaQueue=!!STOCK&&items.length>0&&items.every(function(x){return x.sku});
 btn.disabled=true;btn.textContent="Отправка…";st.hidden=true;
-tgSend(lines.join("\n")).then(function(v){
+var job=viaQueue?orderSend({customerName:inp[0].value,phone:inp[1].value,website:$("website")?$("website").value:"",items:items}):tgSend(lines.join("\n"));
+job.then(function(v){
 cart=[];cartSave();$("f").reset();renderCart();
-st.textContent="Спасибо! Заявка отправлена — мы свяжемся с вами.";
+st.textContent="Спасибо! Заявка"+(v&&v.orderId?" № "+v.orderId:"")+" отправлена — мы свяжемся с вами.";
 st.style.color="var(--ok)";st.hidden=false;
 setTimeout(function(){$("dlg").close();st.hidden=true},2500)
-},function(){
-st.textContent="Не удалось отправить заявку. Позвоните нам по телефону в шапке сайта.";
+},function(err){
+st.textContent=(err&&err.show&&err.message)?err.message:"Не удалось отправить заявку. Позвоните нам по телефону в шапке сайта.";
 st.style.color="var(--accent)";st.hidden=false
 }).then(function(){btn.disabled=false;btn.textContent="Отправить"})});
 ["q","stock","sort","fp","pmin","pmax","favOnly"].forEach(function(i){$(i).addEventListener("input",render)});
@@ -785,7 +805,7 @@ cartSave();cmpBar();favUpdate();syncMarks();route();
 
 /* ===== Запуск: сначала грузим каталог, потом строим страницу ===== */
 function getJSON(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(u+" "+r.status);return r.json()})}
-Promise.all([getJSON("products.json"),getJSON("site.json").catch(function(){return {}})]).then(function(r){loadData(r[0]);S=r[1]||{};applyTheme();boot()}).catch(function(e){
+Promise.all([getJSON("products.json"),getJSON("site.json").catch(function(){return {}}),getJSON("/.netlify/functions/get-stock").catch(function(){return null})]).then(function(r){loadData(r[0]);applyStock(r[2]);S=r[1]||{};applyTheme();boot()}).catch(function(e){
 if(window.console)console.error(e);
 document.getElementById("v-home").insertAdjacentHTML("afterbegin",'<div class="empty">Не удалось загрузить каталог. Обновите страницу или откройте сайт по ссылке, а не как файл на компьютере.</div>')});
 </script>
